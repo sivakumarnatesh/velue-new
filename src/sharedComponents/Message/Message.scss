@@ -1,0 +1,25 @@
+.Titles {
+  // margin: 18px 10px;
+  .Header {
+    color: #273961;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .wrongCreds {
+    color: #ff0000;
+  }
+  .forgotPassword {
+    color: #273961;
+  }
+  .resetLink,
+  .resetSuccess {
+    color: #009e36;
+    font-weight: 600;
+  }
+  .DisableUser{
+    color: #273961;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+}

@@ -1,0 +1,81 @@
+.SideBar {
+  background: #273961 !important;
+  border-radius: 10px;
+  margin: 15px;
+  height: fit-content;
+
+  .Menus {
+    background: transparent;
+    color: #273961;
+  }
+  .Menu-Item {
+    .ant-menu-title-content {
+      display: flex;
+      gap: 10px;
+    }
+  }
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-menu
+    .ant-menu-item
+    .anticon {
+    font-size: 18px !important;
+    min-width: 0px !important;
+  }
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-menu-inline .ant-menu-item {
+    background-color: #56b9c4;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 25px 20px;
+    width: 210px;
+  }
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-menu-inline
+    .ant-menu-item:hover {
+    background-color: #ffffff !important;
+    color: #000000;
+  }
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-menu-light
+    .ant-menu-item-selected,
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-menu-light
+    > .ant-menu
+    .ant-menu-item-selected {
+    background-color: #ffffff !important;
+    color: #000000;
+  }
+  .LogoutContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    .UserLogo img {
+    }
+    .UserDetails {
+      color: #ffffff;
+      .UserName {
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .UserRole {
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+.ant-layout-sider-below {
+  flex: 0 0 250px !important;
+  max-width: 250px !important;
+  min-width: 250px !important;
+  width: 250px !important;
+}
+.ant-layout-sider-collapsed,
+.ant-layout-sider-zero-width {
+  flex: 0 0 0px !important;
+  max-width: 0px !important;
+  min-width: 0px !important;
+  width: 0px !important;
+}
+@media screen and (min-width: 992px) {
+  .ant-layout-sider {
+    min-width: 250px !important;
+  }
+}

@@ -1,0 +1,400 @@
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .LoginPage {
+    .LoginLHS {
+      margin: 30px 60px !important;
+      width: 100% !important;
+    
+      .productDesc {
+        width: fit-content !important;
+      }
+    }
+    .LoginRHS {
+      width: 100% !important;
+      height: fit-content !important;
+      margin: 1.5rem !important;
+      .ageGender {
+        flex-wrap: wrap;
+      }
+      .RadioGroup {
+        margin: 20px !important;
+        // width: 240px !important;
+      }
+      .ageGender {
+        gap: 0px !important;
+        .ant-form-item,
+        .css-dev-only-do-not-override-1vtf12y {
+          width: 100% !important;
+        }
+      }
+      :where(.css-dev-only-do-not-override-1vtf12y).ant-select-single:not(
+          .ant-select-customize-input
+        )
+        .ant-select-selector,
+      .age {
+        width: 100% !important;
+      }
+      .ant-select-selection-placeholder,
+      .ant-select-selection-item {
+        text-align: left !important;
+      }
+    }
+    .Distributors {
+      margin: 20px !important;
+      .AuthorisedBrands {
+        margin-bottom: 20px !important;
+      }
+      .brands {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .LoginPage {
+    .LoginLHS {
+      margin: 50px !important;
+
+      .productDesc {
+        font-size: 2rem !important;
+      }
+      .brands {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        img {
+          width: 100px !important;
+        }
+      }
+    }
+    .LoginRHS {
+      height: 100% !important;
+      width: 40% !important;
+      // .RadioGroup {
+      //   margin: 20px 5% !important;
+      //   width: 90% !important;
+      // }
+      margin-right: 40px !important;
+      .ageGender {
+        flex-wrap: wrap !important;
+        gap: 0px !important;
+        .ant-form-item,
+        .css-dev-only-do-not-override-1vtf12y {
+          width: 100% !important;
+        }
+      }
+      :where(.css-dev-only-do-not-override-1vtf12y).ant-select-single:not(
+          .ant-select-customize-input
+        )
+        .ant-select-selector,
+      .age {
+        width: 100% !important;
+      }
+      .ant-select-selection-placeholder,
+      .ant-select-selection-item {
+        text-align: left !important;
+      }
+    }
+    .Distributors {
+      margin: 20px !important;
+      .AuthorisedBrands {
+        margin-bottom: 20px !important;
+      }
+      .brands {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+    }
+  }
+}
+@media only screen and (min-width: 1025px) and (max-width: 1400px) {
+  .LoginPage {
+    .LoginLHS {
+      margin: 50px !important;
+
+      .productDesc {
+        font-size: 2rem !important;
+      }
+      .brands {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        img {
+          width: 100px !important;
+        }
+      }
+    }
+    .LoginRHS {
+      height: 100% !important;
+      width: 40% !important;
+      // .RadioGroup {
+      //   margin: 20px 15% !important;
+      //   width: 70% !important;
+      // }
+      .ageGender {
+        flex-wrap: wrap !important;
+        gap: 0px !important;
+        .ant-form-item,
+        .css-dev-only-do-not-override-1vtf12y {
+          width: 100% !important;
+        }
+      }
+      :where(.css-dev-only-do-not-override-1vtf12y).ant-select-single:not(
+          .ant-select-customize-input
+        )
+        .ant-select-selector,
+      .age {
+        width: 100% !important;
+      }
+      .ant-select-selection-placeholder,
+      .ant-select-selection-item {
+        text-align: left !important;
+      }
+    }
+    .Distributors {
+      margin: 20px !important;
+      .AuthorisedBrands {
+        margin-bottom: 20px !important;
+      }
+      .brands {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width:1401px){
+  .LoginPage{
+    height: 100vh !important;
+  }
+}
+.LoginPage {
+  background: rgb(86, 185, 196, 0.8);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  // height: 100vh;
+  .LoginLHS {
+    margin: 100px;
+    margin-bottom: 0px;
+    width: 30%;
+    .LogoTitle {
+      width: 200px;
+    }
+    .LogoTitle img {
+      width: 120px;
+    }
+    .sponsorBy {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #ffffff;
+    }
+    .productDesc {
+      font-size: 3rem;
+      font-weight: 400;
+      color: #ffffff;
+      margin: 2rem 0;
+      width: 500px;
+    }
+  }
+  .LoginRHS {
+    width: 30%;
+    // height: 85vh;
+    border-radius: 2rem;
+    margin: 50px;
+    margin-top: 115px;
+    margin-bottom: 0px;
+    margin-right: 100px;
+    background: rgb(255, 255, 255, 0.7);
+    .loginOrSignup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .LoginMainBtn,
+    .LoginDetails {
+      text-align: center;
+      margin: 60px;
+      margin-bottom: 20px;
+      .LoginTitle {
+        color: #273961;
+        font-size: 30px;
+        font-weight: 700;
+      }
+      .LoginSubTitle {
+        color: #273961;
+      }
+    }
+
+    // .RadioGroup {
+    //   background: #ffffff;
+    //   border-radius: 2rem;
+    //   text-align: center;
+    //   margin: 2rem 6rem;
+    //   padding: 0px 15px;
+    // //   width: fit-content;
+    //   .Radio1 {
+    //     padding: 20px 25px;
+    //   }
+    //   .Radio2 {
+    //     padding: 20px 25px;
+    //   }
+    // }
+    :where(
+        .css-dev-only-do-not-override-1vtf12y
+      ).ant-radio-button-wrapper:last-child,
+    :where(
+        .css-dev-only-do-not-override-1vtf12y
+      ).ant-radio-button-wrapper:first-child {
+      border: none;
+      color: black;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 20px;
+      width: fit-content;
+    }
+    :where(
+        .css-dev-only-do-not-override-1vtf12y
+      ).ant-radio-button-wrapper-checked:not(
+        .ant-radio-button-wrapper-disabled
+      ) {
+      background-color: #021a4f !important;
+      color: #a1f6ff !important;
+      border-radius: 2rem !important;
+      //   width: 7rem;
+      //   height: 7rem;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-radio-button-wrapper:not(
+        :first-child
+      )::before {
+      height: 0px !important;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-input-affix-wrapper {
+      padding: 10px;
+      border-radius: 12px;
+      border: none;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-radio-button-wrapper {
+      height: 0px !important;
+      display: table-cell;
+      line-height: 0px !important;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-form {
+      width: 80%;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y) a {
+      float: right;
+      color: #273961;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-form-item
+      .ant-form-item-control-input-content {
+      text-align: center;
+      // display: flex;
+      // align-items: center;
+      // justify-content: space-around;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-input:placeholder-shown {
+      font-weight: 700;
+      font-size: 18px;
+      margin-left: 15px;
+      color: #717070;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-input-affix-wrapper
+      > input.ant-input {
+      font-weight: 500;
+      font-size: 18px;
+      margin-left: 15px;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-radio-group {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-input-number {
+      width: 100% !important;
+    }
+    .ant-input css-dev-only-do-not-override-1vtf12y {
+      padding: 10px !important;
+    }
+    .ageGender {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .email,
+    .age,
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-select-single:not(
+        .ant-select-customize-input
+      )
+      .ant-select-selector {
+      padding: 10px;
+      border: none;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-select-single:not(
+        .ant-select-customize-input
+      )
+      .ant-select-selector,
+    .age {
+      width: 200px;
+      height: 100%;
+    }
+    :where(
+        .css-dev-only-do-not-override-1vtf12y
+      ).ant-select-single.ant-select-show-arrow
+      .ant-select-selection-item,
+    :where(
+        .css-dev-only-do-not-override-1vtf12y
+      ).ant-select-single.ant-select-show-arrow
+      .ant-select-selection-placeholder {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-input-number
+      .ant-input-number-input:placeholder-shown,
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-input-number
+      .ant-input-number-input {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-input-status-error:not(
+        .ant-input-disabled
+      ):not(.ant-input-borderless).ant-input {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    :where(
+        .css-dev-only-do-not-override-1vtf12y
+      ).ant-input-textarea-affix-wrapper.ant-input-affix-wrapper
+      > textarea.ant-input {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+  .Distributors {
+    margin: 40px 100px;
+    margin-top: 0px;
+    width: 100%;
+    .AuthorisedBrands {
+      color: #ffffff;
+      margin-bottom: 50px;
+      font-size: 22px;
+    }
+    .brands {
+      display: flex;
+      justify-content: space-between;
+      img {
+        width: 130px;
+      }
+    }
+  }
+}
