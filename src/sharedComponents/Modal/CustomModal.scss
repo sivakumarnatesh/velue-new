@@ -1,0 +1,206 @@
+.EditItem {
+  width: 80% !important;
+  .SalesContainer {
+    background-color: #e8fcff;
+    border-radius: 10px;
+    margin: 10px 0px;
+    padding: 20px;
+    .salesDetails {
+      display: flex;
+      align-items: center;
+      // justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin: 20px 0px;
+      :where(.css-dev-only-do-not-override-1vtf12y).ant-input {
+        width: 260px !important;
+      }
+      :where(.css-dev-only-do-not-override-1vtf12y).ant-row {
+        flex-flow: column wrap !important;
+      }
+      .Category,
+      .vendor {
+        width: 260px !important;
+      }
+    }
+  }
+  .ProductDescription {
+    // width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0px;
+  }
+  .WeightField {
+    display: flex;
+    .weightInput {
+      width: 70%;
+    }
+    .weightDropdown {
+      width: 30%;
+    }
+    // align-items: center;
+    // justify-content: space-between;
+    // gap: 20px;
+  }
+  .Details {
+    background-color: #e8fcff;
+    border-radius: 10px;
+    margin: 10px 0px;
+    padding: 20px;
+    .FieldUpload {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      .uploadAddProduct {
+        margin-top: 50px;
+      }
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-row {
+      flex-flow: column !important;
+      // gap:20px;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-upload-wrapper
+      .ant-upload-drag {
+      position: static !important;
+    }
+    .ant-upload .ant-upload-drag .css-dev-only-do-not-override-1vtf12y {
+      width: 40% !important;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-upload-wrapper
+      .ant-upload-drag
+      p.ant-upload-text {
+      font-size: 12px !important;
+      padding: 20px;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-upload-wrapper
+      .ant-upload-drag
+      p.ant-upload-drag-icon
+      .anticon {
+      // color:#9e9e9e !important;
+      font-size: 25px !important;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-form-item
+      .ant-form-item-label
+      > label {
+      position: static !important;
+      width: 30vw;
+      gap: 20px 0px;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-form-item
+      .ant-form-item-control-input {
+      position: static !important;
+    }
+    .Upload {
+      // position: relative;
+      .UploadFiles {
+        display: flex;
+        align-items: center;
+        // justify-content: space-between;
+        gap: 20px;
+        // padding-top:50px ;
+        .GSTFile {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .FileTitle {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px 0px;
+          }
+        }
+      }
+    }
+    .Account1,
+    .Account2 {
+      display: flex;
+      align-items: center;
+
+      gap: 40px;
+      margin: 20px 0px;
+      // :where(.css-dev-only-do-not-override-1vtf12y).ant-input{
+      //   width: 260px !important;
+      // }
+    }
+  }
+  .Buttons {
+    text-align: right;
+    .Reject,
+    .Approve {
+      margin-top: 20px;
+    }
+  }
+}
+.EditBusinessItem{
+  width: 80% !important;
+.Details {
+  background-color: #e8fcff;
+  border-radius: 10px;
+  margin: 10px 0px;
+  padding: 20px;
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-row {
+    flex-flow: column !important;
+    // gap:20px;
+  }
+
+.BankName{
+  width: 250px;
+}
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-form-item
+    .ant-form-item-label
+    > label {
+    position: static !important;
+    // width: 30vw;
+    width: 250px;
+    height: 50px;
+    gap: 20px 0px;
+  }
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-form-item
+    .ant-form-item-control-input {
+    position: static !important;
+  }
+  .Upload {
+    // position: relative;
+    .UploadFiles {
+      display: flex;
+      align-items: center;
+      // justify-content: space-between;
+      gap: 20px;
+      // padding-top:50px ;
+      .GSTFile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .FileTitle{
+          font-size: 16px;
+          font-weight: 600;
+          margin: 10px 0px;
+        }
+      }
+    }
+  }
+  .Account1,
+  .Account2 {
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin: 20px 0px;
+  }
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-upload-wrapper
+    .ant-upload-drag {
+    background-color: #ffffff !important;
+    // width: 25% !important;
+    border-radius: 10px;
+    padding: 10px;
+    width: 150px !important;
+    // height: 25% !important;
+  }
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-input{
+    width: 250px !important;
+  }
+}
+}
