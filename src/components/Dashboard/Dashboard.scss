@@ -1,0 +1,230 @@
+.DashboardContainer {
+  margin: 20px;
+  .DashboardLastContainer{
+    display: flex;
+    gap: 20px;
+    .CommonCard{
+      width: 49% !important;
+      // height: 50vh !important;
+    }
+  }
+}
+
+.card-container {
+  display: flex;
+  // flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px 0px;
+  .card-box {
+    display: flex;
+    flex-direction: column;
+    width: 10.6rem;
+    height:140px;
+    background-color: #e8fcff;
+    box-shadow: 0px 4px 16px rgba(39, 57, 97, 0.25);
+    border-radius: 16px;
+  }
+  .card-box-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    gap: 20px;
+    width: fit-content;
+    .card-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        background-color: #273961;
+        border-radius: 50px;
+      }
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        // padding: 0 20px;
+        .card-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            // line-height: 30px;
+            color: #273961;
+          }
+          .card-amount {
+            font-size: 1rem;
+            color: #273961;
+            font-weight: 800;
+          }
+      }
+  }
+  .card-description {
+    padding:15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    // line-height: 30px;
+    color: #273961;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width:320px) and (max-width:1400px) {
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px 0px;
+        .card-box {
+          display: flex;
+          flex-direction: column;
+          width: 15rem;
+          height:140px;
+          background-color: #e8fcff;
+          box-shadow: 0px 4px 16px rgba(39, 57, 97, 0.25);
+          border-radius: 16px;
+        }
+        .card-box-details {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 15px;
+          gap: 20px;
+          width: fit-content;
+          .card-img {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 50px;
+              height: 50px;
+              background-color: #273961;
+              border-radius: 50px;
+            }
+            .card-content {
+              display: flex;
+              flex-direction: column;
+              // padding: 0 20px;
+              .card-title {
+                  font-size: 0.9rem;
+                  font-weight: 500;
+                  // line-height: 30px;
+                  color: #273961;
+                }
+                .card-amount {
+                  font-size: 1.5rem;
+                  color: #273961;
+                  font-weight: 800;
+                }
+            }
+        }
+        .card-description {
+          padding:15px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          // line-height: 30px;
+          color: #273961;
+          text-align: center;
+        }
+      } 
+}
+
+.CommonCard{
+  border: 1px solid #87888D;
+  border-radius: 10px;
+  margin: 20px 0px;
+
+  .CardTop{
+    background: #273961;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .Dropdown{
+    width: 140 !important;
+  }
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    background-color:#273961 !important;
+    border: none !important;
+    color: #56B9C4;
+    font-size: 18px;
+    font-weight: 700 !important;
+  }
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-select .ant-select-arrow{
+    color: #56B9C4;
+    font-size: 16px;
+  }
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-select-single.ant-select-show-arrow .ant-select-selection-item{
+    color: #56B9C4;
+  }
+  .Children{
+    padding: 20px;
+    canvas{
+      width: 75vw !important;
+    }
+  }
+}
+
+@media screen and (min-width:320px) {
+  .CommonCard{
+    border: 1px solid #87888D;
+    border-radius: 10px;
+    margin: 20px 0px;
+    width: 100% !important;
+    .CardTop{
+      background: #273961;
+      border-radius: 10px;
+      padding: 10px 20px;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .Dropdown{
+      width: 140 !important;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-select:not(.ant-select-customize-input) .ant-select-selector{
+      background-color:#273961 !important;
+      border: none !important;
+      color: #56B9C4;
+      font-size: 14px;
+      font-weight: 700 !important;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-select .ant-select-arrow{
+      color: #56B9C4;
+      font-size: 14px;
+    }
+    :where(.css-dev-only-do-not-override-1vtf12y).ant-select-single.ant-select-show-arrow .ant-select-selection-item{
+      color: #56B9C4;
+    }
+    .Children{
+      padding: 20px;
+      canvas{
+        width: fit-content !important;
+      }
+    }
+  }
+}
+
+.InventoryContainer{
+  .InventoryTop{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  }
+  .InventoryCards{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #E8FCFF;
+    border-radius: 10px;
+    padding: 20px;
+    .CardLHS{
+      display: flex;
+      .ProductDetails{
+        margin-left: 20px;
+      }
+    }
+  }
+}

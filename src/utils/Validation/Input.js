@@ -37,3 +37,11 @@ export const upiCodeValidate = async (name = "") => {
 
   return upiCode.test(name); // true
 };
+
+export const validateGST = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
+export const validateGSTNumber = (gstNumber) => {
+  const regex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
+  return regex.test(gstNumber);
+}
+
+

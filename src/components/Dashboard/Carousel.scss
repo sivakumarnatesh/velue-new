@@ -1,0 +1,54 @@
+// .dashboardCarousel{
+//     display: flex;
+//     gap: 5px;
+.slick-track{
+    width: fit-content !important;
+    display: flex !important;
+    gap: 10px;
+}
+.slick-slide, .slick-active, .slick-current{
+    width: fit-content !important;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+  font-size: 30px !important;
+//   background: none !important;
+}
+.slick-prev{
+    left: -20px !important;
+}
+.slick-next{
+    right: -10px !important;
+}
+.card_container{
+    border-radius: 10px;
+    border: 1px solid #E8E8E8;
+    padding: 10px;
+    // width: 213px;
+    width: 170px !important;
+    .card_carousel{
+        img{
+            width: 150px;
+            // height: 200px;
+        }
+    }
+    .carousel_body{
+        .CarouselTitle{
+            color: #273961;
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 25px;
+        }
+        .GoodsDetails{
+            display: flex;
+            gap: 10px;
+            margin: 7px 0;
+        }
+        .hr{
+            border-top: 1px solid #E8E8E8;
+            margin: 10px 0px;
+        }
+    }
+}
+// }

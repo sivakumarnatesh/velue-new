@@ -51,37 +51,408 @@
       }
     }
   }
- 
+}
+.OrderStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 .StatusContainer {
   .Accept {
     color: #ffffff;
-    border-radius: 10px;
-    background-color: #FF7A00;
+    border-radius: 25px;
+    background-color: #ff7a00;
+    text-align: center;
+    padding: 10px 20px;
   }
   .Receive {
     color: #ffffff;
-    border-radius: 10px;
+    border-radius: 25px;
     background-color: #273961;
+    text-align: center;
+    padding: 10px 20px;
   }
   .Approve {
     color: #ffffff;
-    border-radius: 10px;
-    background-color: #C9C110;
+    border-radius: 25px;
+    background-color: #c9c110;
+    text-align: center;
+    padding: 10px 20px;
   }
   .Transit {
     color: #ffffff;
-    border-radius: 10px;
-    background-color: #0975C4;
+    border-radius: 25px;
+    background-color: #0975c4;
+    text-align: center;
+    padding: 10px 20px;
   }
   .Deliver {
     color: #ffffff;
-    border-radius: 10px;
-    background-color: #1F9254;
+    border-radius: 25px;
+    background-color: #1f9254;
+    text-align: center;
+    padding: 10px 20px;
   }
   .Reject {
-    color: #A30D11;
-    border-radius: 10px;
-    background-color: #FBE7E8;
+    color: #a30d11;
+    border-radius: 25px;
+    background-color: #fbe7e8;
+    text-align: center;
+    padding: 10px 20px;
   }
 }
+.OrderDetails {
+  margin: 20px 40px;
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-table-wrapper
+    .ant-table-thead
+    > tr
+    > th,
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-table-wrapper
+    .ant-table-thead
+    > tr
+    > td {
+    background-color: #273961 !important;
+    color: #ffffff;
+  }
+  .ant-table-tbody {
+    background-color: #e8fcff !important;
+    font-weight: 600;
+  }
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-pagination
+    .ant-pagination-item-active {
+    background-color: #273961;
+
+    border: none !important;
+  }
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-pagination
+    .ant-pagination-item-active
+    a {
+    color: #ffffff !important;
+  }
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-pagination
+    .ant-pagination-item {
+    border-radius: 8px;
+    border: 1px solid #9e9e9e;
+  }
+  .OrdersTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    gap: 20px;
+    .SearchBar {
+      :where(.css-dev-only-do-not-override-1vtf12y).ant-input-affix-wrapper-sm {
+        padding: 5px 18px !important;
+        border-radius: 10px !important;
+        border: 2px solid #e8e8e8;
+        background: #e8e8e8;
+      }
+      :where(.css-dev-only-do-not-override-1vtf12y).ant-input-affix-wrapper
+        > input.ant-input {
+        background-color: #e8e8e8;
+      }
+    }
+  }
+}
+.OrderInsertion {
+  margin: 15px;
+  .productDetailsTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+  }
+}
+
+:where(.css-dev-only-do-not-override-1vtf12y).ant-table-wrapper
+  .ant-table-thead
+  > tr
+  > th,
+:where(.css-dev-only-do-not-override-1vtf12y).ant-table-wrapper
+  .ant-table-thead
+  > tr
+  > td {
+  background: #021a4f !important;
+  color: #ffffff;
+}
+.orderInsertionTable {
+  // :where(.css-dev-only-do-not-override-1vtf12y).ant-table-wrapper .ant-table-thead >tr>th, :where(.css-dev-only-do-not-override-1vtf12y).ant-table-wrapper .ant-table-thead >tr>td{
+  //   background: #1f9254 !important;
+  // }
+}
+.DetailsTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  .TopLeft {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    .BackBtn {
+      font-size: 30px;
+    }
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .DetailsTop {
+    .TopLeft {
+      gap: 14px !important;
+      .BackBtn {
+        font-size: 30px;
+      }
+    }
+  }
+}
+.orderamtCenter{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.DetailsCenter {
+  border: 2px solid #d9d9d9;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px;
+  margin-bottom: 20px;
+  .DetailsLHS {
+    display: flex;
+    flex-wrap: wrap;
+    // align-items: center;
+    // justify-content: center;
+    // gap: 20px;
+    .CustomerAddress {
+      color: #a3a3a3;
+      font-size: 14px;
+      font-weight: 400;
+      width: 300px;
+      margin-top: 10px;
+    }
+  }
+  @media screen and (min-width: 320px) and (max-width: 768px) {
+    .DetailsLHS {
+      .CustomerAddress {
+        width: 180px;
+        margin-bottom: 10px;
+      }
+      .ContactInfo {
+        margin: 20px 0px;
+      }
+    }
+  }
+  .DetailsRHS {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    .Amount {
+      margin-top: 20px;
+    }
+  }
+}
+.Buttons {
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-select:not(
+      .ant-select-customize-input
+    )
+    .ant-select-selector {
+    background-color: #021a4f !important;
+    color: #ffffff !important;
+    text-align: left;
+  }
+}
+.Goods {
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+  gap: 20px;
+  .GoodsDetails {
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    gap: 10px;
+  }
+  .ProductName {
+    color: #273961;
+    font-size: 16px;
+    font-weight: 700;
+  }
+}
+.OrderCenter {
+  background-color: #e8fcff;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  :where(.css-dev-only-do-not-override-1vtf12y).ant-select-single {
+    width: 300px;
+    margin-top: 15px;
+  }
+  .orderamt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0px;
+    gap:60px;
+  }
+}
+:where(.css-dev-only-do-not-override-1vtf12y).ant-select .ant-select-arrow{
+  color: #ffffff !important;
+}
+.ant-table-tbody {
+  background-color: #e8fcff !important;
+  font-weight: 600;
+}
+.Buttons {
+  text-align: right;
+}
+.pieces{
+  color:#008A92;
+  
+}
+:where(.css-dev-only-do-not-override-1vtf12y).ant-checkbox .ant-checkbox-inner{
+  width: 28px !important;
+  height: 28px !important;
+}
+:where(.css-dev-only-do-not-override-1vtf12y).ant-checkbox-checked .ant-checkbox-inner{
+border-color: #008A92 !important;
+  background-color: #008A92 !important;
+}
+:where(.css-dev-only-do-not-override-1vtf12y).ant-checkbox .ant-checkbox-inner:after{
+  inset-inline-start: 31.5% !important;
+}
+:where(.css-dev-only-do-not-override-1vtf12y).ant-modal .ant-modal-content{
+  padding: 0px !important;
+}
+:where(.css-dev-only-do-not-override-1vtf12y).ant-checkbox-checked:after{
+  border: transparent !important;
+}
+.OrderRupees {
+  background-color: #dadada;
+  float: right;
+  width: 500px;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 20px;
+  .OrderAlign {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin: 10px;
+    .OrderTitle {
+      color: #273961;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: left;
+    }
+    .OrderAmt {
+      color: #0975c4;
+      font-size: 22px;
+      font-weight:700;
+      text-align: left;
+    }
+  }
+}
+.ProductModal {
+  width: 100%;
+  display: flex;
+  
+  .ProductFirst {
+    width: 50%;
+    border-radius: 1px solid #000000;
+    margin-top: 20px;
+    border-right: 1px solid #a3a3a3;
+    padding-right: 20px;
+    .ProductFTop{
+      margin-top: 20px;
+      background-color: #e0e0e0;
+      :where(.css-dev-only-do-not-override-1vtf12y).ant-input-affix-wrapper{
+      border-color: transparent !important;
+      border-width: 0px !important;
+      height: 35px;
+      }
+      
+    }
+    .ProductRight{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #9e9e9e;
+      font-weight: 700;
+      font-size: 14px;
+      float: right;
+      width: 50%;
+      margin-top: 20px;
+      // margin-left: 150px;
+    }
+  }
+  .ProductSecond {
+    width: 50%;
+    border-radius: 1px solid #000000;
+    margin-top: 20px;
+ 
+    margin-left: 20px;
+    .Goods{
+      margin-left: 20px;
+    }
+    .ProductRight{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #9e9e9e;
+      font-weight: 700;
+      font-size: 14px;
+      // text-align: right;
+      margin-top: 20px;
+      margin-left: 62px;
+    }
+    .ProductSTop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px;
+      .SelectedItem {
+        color: #273961;
+        font-size: 22px;
+        font-weight: 700;
+      }
+      .Quantity {
+        color: #273961;
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+    
+  }
+}
+.ProductQuantity{
+  background-color: #e1e1e1;
+  display: flex;
+  gap: 20px;
+  // justify-content: space-around;
+  border-radius: 12px;
+  padding: 10px;
+  .Increment{
+    font-size: 18px;
+  }
+  .Decrement{
+    font-size: 18px;
+  }
+}
+
+  // :where(.css-dev-only-do-not-override-1vtf12y).ant-select-single:not(.ant-select-customize-input) .ant-select-selector{
+  //   background: #021a4f !important;
+  //   text-align: left;
+  //   color: #ffffff !important;
+  // }

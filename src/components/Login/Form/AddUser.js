@@ -13,12 +13,17 @@ import {
 
 const { Option } = Select;
 
-const AddUser = ({ onCancel, FindLoader, Row, Mode,fetch }) => {
-  console.log('row',Row)
-  console.log("Mode", Mode);
+const AddUser = ({ onCancel, FindLoader, Row, Mode, fetch, Roles }) => {
+  console.log('Roles',Row)
+  // Roles.map((item) => {
+  //   console.log('item',item?.roleName)
+  // })
+  
   const [form] = Form.useForm();
   const [UserName, setUserName] = useState(Row?.userName ?? "");
-  const [FirstName, setFirstName] = useState(Mode == 'edit' ? Row?.firstName : "");
+  const [FirstName, setFirstName] = useState(
+    Mode == "edit" ? Row?.firstName : ""
+  );
   const [LastName, setLastName] = useState(Row?.lastName ?? "");
   const [Email, setEmail] = useState(Row?.emailId ?? "");
   const [PhoneNumber, setPhoneNumber] = useState("");
@@ -42,9 +47,10 @@ const AddUser = ({ onCancel, FindLoader, Row, Mode,fetch }) => {
         lastName: LastName,
         emailId: Email,
         phoneNumber: PhoneNumber,
-        userRole: Role,
+        // userRole: Role,
+        userRoleId: Role,
         userPassword: Password,
-        userStatus: 'active',
+        userStatus: "active",
       };
       POSTAPI(`${BASE_URL}${CREATE_ADMIN_USERS}`, payload)
         .then((res) => {
@@ -71,7 +77,6 @@ const AddUser = ({ onCancel, FindLoader, Row, Mode,fetch }) => {
 
   return (
     <Form form={form} name="adduser" scrollToFirstError>
-     
       <div className="userName">
         <Form.Item
           name="firstname"
@@ -131,7 +136,6 @@ const AddUser = ({ onCancel, FindLoader, Row, Mode,fetch }) => {
               message: "Please input your username!",
               whitespace: true,
             },
-            
           ]}
         >
           <Input
@@ -140,7 +144,7 @@ const AddUser = ({ onCancel, FindLoader, Row, Mode,fetch }) => {
             // value={UserName}
           />
         </Form.Item>
- 
+
         <Form.Item
           name="email"
           label="Email Address"
@@ -163,10 +167,9 @@ const AddUser = ({ onCancel, FindLoader, Row, Mode,fetch }) => {
             // value={Email}
           />
         </Form.Item>
-     
       </div>
       <div className="Auth">
-           <Form.Item
+        <Form.Item
           name="phone"
           label="Mobile Number"
           // initialValue={PhoneNumber ?? ''}
@@ -193,11 +196,16 @@ const AddUser = ({ onCancel, FindLoader, Row, Mode,fetch }) => {
             placeholder="select your role"
             onChange={(val) => setRole(val)}
           >
-            <Option value="superadmin">Super Admin</Option>
-            <Option value="admin">Admin</Option>
-            <Option value="other">Other</Option>
+            {Roles.length > 0  && Roles.map((item) => (
+                <Option key={item?.roleId} value={item?.roleId}>{item?.roleName}</Option>
+                
+              ))}
+
+            {/* <Option value="admin">Admin</Option>
+            <Option value="other">Other</Option> */}
           </Select>
         </Form.Item>
+        
         <Form.Item
           name="password"
           label="Password"
@@ -236,6 +244,7 @@ const AddUser = ({ onCancel, FindLoader, Row, Mode,fetch }) => {
         </div>
       </div>
     </Form>
+    
   );
 };
 

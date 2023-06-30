@@ -13,12 +13,14 @@ import {
 
 const { Option } = Select;
 
-const EditUser = ({ onCancel, FindLoader, Row, Mode,fetch }) => {
-  console.log('row',Row)
+const EditUser = ({ onCancel, FindLoader, Row, Mode, fetch }) => {
+  console.log("row", Row);
 
   const [form] = Form.useForm();
   const [UserName, setUserName] = useState(Row?.userName ?? "");
-  const [FirstName, setFirstName] = useState(Mode == 'edit' ? Row?.firstName : "");
+  const [FirstName, setFirstName] = useState(
+    Mode == "edit" ? Row?.firstName : ""
+  );
   const [LastName, setLastName] = useState(Row?.lastName ?? "");
   const [Email, setEmail] = useState(Row?.emailId ?? "");
   const [PhoneNumber, setPhoneNumber] = useState(Row?.phoneNumber ?? "");
@@ -27,52 +29,40 @@ const EditUser = ({ onCancel, FindLoader, Row, Mode,fetch }) => {
 
   const validateCredentials = () => {
     FindLoader(true);
-    // if (
-    //   isStringNotEmpty(UserName) &&
-    //   isStringNotEmpty(FirstName) &&
-    //   isStringNotEmpty(LastName) &&
-    //   isStringNotEmpty(Email) &&
-    //   isStringNotEmpty(PhoneNumber) &&
-    //   isStringNotEmpty(Role) &&
-    //   isStringNotEmpty(Password)
-    // ) {
-      const payload = {
-        userName: UserName ?? Row?.userName,
-        firstName: FirstName ?? Row?.firstName,
-        lastName: LastName ?? Row?.lastName,
-        emailId: Email ?? Row?.emailId,
-        phoneNumber: PhoneNumber ?? Row?.phoneNumber,
-        userRole: Role ?? Row?.userRole,
-        userPassword: Password ?? Row?.userPassword,
-        userStatus: 'active',
-      };
-      console.log('payload',payload)
-      PUTAPI(`${BASE_URL}${EDIT_ADMIN_USERS}${Row?.userId}`, payload)
-        .then((res) => {
-          console.log("res", res);
-          if (
-            res?.status === STATUS_CODE?.SUCCESS_CODE ||
-            res?.status === STATUS_CODE?.SUCCESS_CODE_1
-          ) {
-            onCancel();
-            FindLoader(false);
-            message.success("User updated successfully.");
-            fetch();
-          }
-        })
-        .catch((err) => {
-          console.log("err", err);
+
+    const payload = {
+      userName: UserName ?? Row?.userName,
+      firstName: FirstName ?? Row?.firstName,
+      lastName: LastName ?? Row?.lastName,
+      emailId: Email ?? Row?.emailId,
+      phoneNumber: PhoneNumber ?? Row?.phoneNumber,
+      userRole: Role ?? Row?.userRole,
+      userPassword: Password ?? Row?.userPassword,
+      userStatus: "active",
+    };
+    console.log("payload", payload);
+    PUTAPI(`${BASE_URL}${EDIT_ADMIN_USERS}${Row?.userId}`, payload)
+      .then((res) => {
+        console.log("res", res);
+        if (
+          res?.status === STATUS_CODE?.SUCCESS_CODE ||
+          res?.status === STATUS_CODE?.SUCCESS_CODE_1
+        ) {
+          onCancel();
           FindLoader(false);
-          message.error(err.message);
-        });
-    // } else {
-    //   message.error("Enter all mandatory fields!");
-    // }
+          message.success("User updated successfully.");
+          fetch();
+        }
+      })
+      .catch((err) => {
+        console.log("err", err);
+        FindLoader(false);
+        message.error(err.message);
+      });
   };
 
   return (
     <Form form={form} name="adduser" scrollToFirstError>
-     
       <div className="userName">
         <Form.Item
           name="firstname"
@@ -133,7 +123,6 @@ const EditUser = ({ onCancel, FindLoader, Row, Mode,fetch }) => {
               message: "Please input your username!",
               whitespace: true,
             },
-            
           ]}
         >
           <Input
@@ -142,7 +131,7 @@ const EditUser = ({ onCancel, FindLoader, Row, Mode,fetch }) => {
             // value={UserName}
           />
         </Form.Item>
- 
+
         <Form.Item
           name="email"
           label="Email Address"
@@ -165,10 +154,9 @@ const EditUser = ({ onCancel, FindLoader, Row, Mode,fetch }) => {
             // value={Email}
           />
         </Form.Item>
-     
       </div>
       <div className="Auth">
-           <Form.Item
+        <Form.Item
           name="phone"
           label="Mobile Number"
           initialValue={Row?.phoneNumber}

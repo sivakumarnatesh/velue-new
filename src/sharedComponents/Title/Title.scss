@@ -1,16 +1,167 @@
-.Title{
-    color:#273961;
-    font-size: 22px;
+.Title {
+  color: #273961;
+  font-size: 22px;
+  font-weight: 600;
+}
+.AllOrders {
+  color: #273961;
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+.OrdersReceived {
+  color: #16c098;
+  font-size: 14px;
+  font-weight: 600;
+}
+.OrderID {
+  color: #273961;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.TOrderID {
+  color: #87888d;
+  font-size: 14px;
+  font-weight: 500;
+}
+.Customer,.Contact{
+    font-size: 16px;
+    font-weight: 500;
+    color: #87888d;
+}
+.CustomerName{
+    color: #273961;
+    font-size: 1rem;
+    font-weight: 700;
+}
+.GST,.PhoneNumber{
+    font-size: 16px;
     font-weight: 600;
+    color: #008A92;
 }
-.AllOrders{
-    color:#273961;
-    font-size: 20px;
-    font-weight: 800;
-    margin-bottom: 15px;
+.CodeTitle{
+color:#87888D;
 }
-.OrdersReceived{
-    color:#16C098;
+.Code{
+    color: #008A92;
+}
+.Itemcode{
+  color: #008A92;
+}
+.Sales{
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 700;
+}
+.Active{
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 30px;
+  border-radius: 20px;
+  background-color: #273961;
+}
+.ItemDetails{
+  color: #273961;
+  font-size: 18px;
+  font-weight: 600;
+}
+.Hardware{
+  color: #273961;
+  font-size: 20px;
+  font-weight: 600;
+}
+.Name{
+  color: #008A92;
+  font-size: 16px;
+  font-weight: 600;
+}
+.ProductImageDetails{
+  color: #273961;
+  font-size: 18px;
+  font-weight: 700;
+}
+.IName{
+  color: #8B8686;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+}
+.IValue{
+  color: #273961;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+}
+@media screen and (min-width:320px) and (max-width:900px) {
+  .Sales{
     font-size: 14px;
-    font-weight: 600;
+  }
+}
+.LowStock{
+  color: #F01818;
+  font-size: 16px;
+  font-weight: 600;
+}
+.Minimum{
+  color: #87888D;
+  font-size: 16px;
+  font-weight: 400;
+}
+.ProductFirstName{
+  color: #273961;
+  font-size: 16px;
+  font-weight: 600;
+}
+.Pcs{
+  color: #008A92;
+  font-size: 14px;
+  font-weight: 600;
+}
+.PcsAmount{
+  color: #273961;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+}
+.RoleName{
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  margin-top: 10px;
+ 
+}
+.MainUser{
+  color:#E4FCFF;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.User{
+  color:#E4FCFF;
+  font-size: 16px;
+  font-weight: 600;
+}
+.AccountDetails{
+  color: #273961;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.bulkuploadTitle{
+  color: #273961;
+  font-size: 16px;
+  font-weight: 700;
+}
+.insertionTitle{
+  color: #273961;
+  font-size: 17px;
+  font-weight: 600;
+}
+.productDetails{
+  color: #273961;
+  font-size: 18px;
+  font-weight: 600;
+}
+.TGoodsId{
+  font-size: 15px;
 }

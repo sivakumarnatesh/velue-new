@@ -2,15 +2,20 @@ import React from "react";
 import "./Orders.scss";
 import OrderTop from "./OrderTop";
 import OrderTable from "./OrderTable";
-import './Orders.scss';
+import "./Orders.scss";
+import { useState } from "react";
 
-function Orders() {
+const Orders = () => {
+  const [val,setVal] = useState('');
+  const searchOrder = (val) => {
+    setVal(val);
+  }
   return (
     <div className="OrdersContainer">
-      <OrderTop />
-      <OrderTable />
+      <OrderTop status={true} searchOrder={searchOrder} />
+      <OrderTable val={val} />
     </div>
   );
-}
+};
 
 export default Orders;

@@ -1,6 +1,7 @@
 import { CloseOutlined, MinusOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 import React from "react";
+import './CustomModal.scss';
 
 function CustomModal({
   children,

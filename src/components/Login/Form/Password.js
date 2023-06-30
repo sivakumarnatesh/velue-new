@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Form, Input } from "antd";
 import CustomButton from "../../../sharedComponents/Buttons/CustomButton";
 import { Images } from "../../../assets/Images/Images";
-import Message from "../../../sharedComponents/Message/Message";
 import { isStringNotEmpty } from "../../../utils/Validation/Input";
 import { useNavigate } from "react-router-dom";
 

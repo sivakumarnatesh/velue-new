@@ -3,7 +3,7 @@ import Title from "../../sharedComponents/Title/Title";
 import CustomButton from "../../sharedComponents/Buttons/CustomButton";
 import "./UserProfile.scss";
 import AntdTable from "../../sharedComponents/AntdTable/AntdTable";
-import { MoreOutlined,SearchOutlined } from "@ant-design/icons";
+import { MoreOutlined, SearchOutlined } from "@ant-design/icons";
 import PopOver from "../../sharedComponents/PopOver/PopOver";
 import CustomModal from "../../sharedComponents/Modal/CustomModal";
 import AddUser from "../Login/Form/AddUser";
@@ -13,20 +13,31 @@ import {
   BASE_URL,
   DELETE_ADMIN_USER,
   DISABLE_ADMIN_USERS,
+  GET_ROLES,
   LIST_ADMIN_USERS,
+  USER_DETAILS,
 } from "../../utils/API/EndPoint";
 import { Input, message } from "antd";
 import Loader from "../../sharedComponents/CustomLoader/Loader";
 import EditUser from "../Login/Form/EditUser";
+import { STATUS_CODE } from "../../utils/Variables/DefaultData";
+import { AdminScreens } from "../../utils/Routing/RoutePath";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [ConfirmDisable, setConfirmDisable] = useState(false);
   const [dataSource, setDataSource] = useState([]);
+
   const [Loading, setLoading] = useState(false);
   const [Row, setRow] = useState();
   const [Mode, setMode] = useState("add");
+  // const [userDetails, setUserDetails] = useState("");
+
+  const navigate = useNavigate();
+  const { location } = useLocation();
+  console.log("loc", location);
 
   useEffect(() => {
     fetch();
@@ -34,14 +45,84 @@ const UserProfile = () => {
 
   const fetch = async () => {
     const data = await GetAPI(`${BASE_URL}${LIST_ADMIN_USERS}`);
-    setDataSource(data);
+    if (
+      data?.status === STATUS_CODE?.SUCCESS_CODE ||
+      data?.status === STATUS_CODE?.SUCCESS_CODE_1
+    ) {
+      setDataSource(data?.data);
+    } else {
+      message.error(data);
+    }
   };
 
-  const editMember = (row) => {
+  const deleteMember = (row) => {
+    DELAPI(`${BASE_URL}${DELETE_ADMIN_USER}${row?.userId}`)
+      .then((res) => {
+        console.log("res", res);
+        if (
+          res?.status === STATUS_CODE?.SUCCESS_CODE ||
+          res?.status === STATUS_CODE?.SUCCESS_CODE_1
+        ) {
+          message.success(`Successfully deleted user ${row?.userName}`);
+          fetch();
+        } else {
+          message.error("Something went wrong");
+        }
+      })
+      .catch((err) => {
+        console.log("err", err);
+        message.error("Something went wrong");
+      });
+  };
+
+  const DisableUser = () => {
+    console.log('row',Row?.status);
+    const payload = {
+      userId: Row?.userId,
+     status: Row?.status === "Enable" ? "Disable" : "Enable",
+    };
+    PUTAPI(`${BASE_URL}${DISABLE_ADMIN_USERS}`, payload)
+      .then((res) => {
+        console.log("res", res);
+        if (
+          res?.status === STATUS_CODE?.SUCCESS_CODE ||
+          res?.status === STATUS_CODE?.SUCCESS_CODE_1
+        ) {
+          message.success("User status updated successfully.");
+          fetch();
+          setConfirmDisable(false);
+        } else {
+          message.error("Something went wrong");
+          setConfirmDisable(false);
+        }
+      })
+      .catch((err) => {
+        console.log("err", err);
+        message.error("Something went wrong");
+        setConfirmDisable(false);
+      });
+  };
+
+  const fetch_UserDetails = async (userId) => {
+    const data = await GetAPI(`${BASE_URL}${USER_DETAILS}/${userId}`);
+    if (
+      data?.status === STATUS_CODE?.SUCCESS_CODE ||
+      data?.status === STATUS_CODE?.SUCCESS_CODE_1
+    ) {
+      // setUserDetails(data?.data);
+      console.log("datas", data?.data);
+      navigate(AdminScreens?.edituser, { state: { userDetails: data?.data } });
+    } else {
+      message.error(data);
+    }
+  };
+
+  const editMember = async(row) => {
     console.log(row);
     setRow(row);
-    setEditModal(true);
+    await fetch_UserDetails(row?.userId);
     setMode("edit");
+    
   };
 
   const onCancel = () => {
@@ -50,26 +131,13 @@ const UserProfile = () => {
   };
 
   const disableMember = (row) => {
-    console.log(row);
     setRow(row);
     setConfirmDisable(true);
   };
 
-  const deleteMember = (row) => {
-    DELAPI(`${BASE_URL}${DELETE_ADMIN_USER}${row?.userId}`)
-      .then((res) => {
-        console.log("res", res);
-        message.success(`Successfully deleted user ${row?.userName}`);
-        fetch();
-      })
-      .catch((err) => {
-        console.log("err", err);
-        message.error("Something went wrong");
-      });
-  };
-
   const AddNewUser = () => {
-    setOpenModal(true);
+    // setOpenModal(true);
+    navigate(AdminScreens?.adduser);
     setMode("add");
   };
 
@@ -94,8 +162,9 @@ const UserProfile = () => {
       result = [...result, val];
     }
     if (true) {
+      console.log('row',row?.status);
       const val = {
-        text: `${Row?.userStatus === "active" ? "Enable" : "Disable"}`,
+        text: `${row?.status === "Enable" ? "Disable" : "Enable"}`,
         onClick: () => disableMember(row),
       };
       result = [...result, val];
@@ -111,28 +180,29 @@ const UserProfile = () => {
     },
     {
       title: "Name",
-      dataIndex: "userName",
+      dataIndex: "firstName",
       render: (text) => {
         return <div>{text?.charAt(0)?.toUpperCase() + text?.slice(1)}</div>;
       },
     },
     {
       title: "Role",
-      dataIndex: "userRole",
+      dataIndex: "role",
       render: (text) => {
         return <div>{text?.charAt(0)?.toUpperCase() + text?.slice(1)}</div>;
       },
     },
     {
       title: "Status",
-      dataIndex: "userStatus",
+      dataIndex: "status",
       render: (text) => {
-        return <div>{text?.charAt(0)?.toUpperCase() + text?.slice(1)}</div>;
+ 
+        return <div>{text}</div>;
       },
     },
     {
       title: "Email",
-      dataIndex: "emailId",
+      dataIndex: "emailAddress",
     },
     {
       title: "",
@@ -150,25 +220,7 @@ const UserProfile = () => {
       },
     },
   ];
-  const DisableUser = () => {
-    console.log("validated");
-    const payload = {
-      userId: Row?.userId,
-      userStatus: Row?.userStatus === "active" ? "inactive" : "active",
-    };
-    PUTAPI(`${BASE_URL}${DISABLE_ADMIN_USERS}${Row?.userId}`, payload)
-      .then((res) => {
-        console.log("res", res);
-        message.success("User disabled successfully.");
-        fetch();
-        setConfirmDisable(false);
-      })
-      .catch((err) => {
-        console.log("err", err);
-        message.error("Something went wrong");
-        setConfirmDisable(false);
-      });
-  };
+
   const FindLoader = (flag) => {
     setLoading(flag);
   };
@@ -177,12 +229,12 @@ const UserProfile = () => {
       <div className="UserHeader">
         <Title title="Users" className="Title" />
         <div className="SearchBar">
-        <Input
-          size="small"
-          placeholder="Search Customer Name"
-          prefix={<SearchOutlined />}
-        />
-      </div>
+          <Input
+            size="small"
+            placeholder="Search Customer Name"
+            prefix={<SearchOutlined />}
+          />
+        </div>
         <CustomButton
           className="AddUSer"
           onClick={AddNewUser}
@@ -208,10 +260,6 @@ const UserProfile = () => {
         closeOnPress={onCancel}
         className="AddUser"
       >
-        {/* <div className="UserDetails">
-          <div className="User Title">User ID</div>
-          <div className="EmployeeID">1112234</div>
-        </div> */}
         <Title title="User Information" className="Title" />
         <AddUser
           onCancel={onCancel}
@@ -219,6 +267,7 @@ const UserProfile = () => {
           Row={Row}
           Mode={Mode}
           fetch={fetch}
+          // Roles={Roles}
         />
       </CustomModal>
       <CustomModal
@@ -227,10 +276,6 @@ const UserProfile = () => {
         closeOnPress={onCancel}
         className="AddUser"
       >
-        {/* <div className="UserDetails">
-          <div className="User Title">User ID</div>
-          <div className="EmployeeID">1112234</div>
-        </div> */}
         <Title title="User Information" className="Title" />
         <EditUser
           onCancel={onCancel}
@@ -240,7 +285,7 @@ const UserProfile = () => {
           fetch={fetch}
         />
       </CustomModal>
-      {/* <EditUser onCancel={onCancel} FindLoader={FindLoader} Row={Row} Mode={Mode} fetch={fetch}  /> */}
+
       <CustomModal
         visible={ConfirmDisable}
         onCancel={onDisableCancel}
@@ -258,7 +303,7 @@ const UserProfile = () => {
             onClick={onDisableCancel}
           />
           <CustomButton
-            text={Row?.userStatus === "active" ? "Disable" : "Enable"}
+            text={Row?.status === "Enable" ? "Disable" : "Enable"}
             className="Save"
             onClick={DisableUser}
           />
