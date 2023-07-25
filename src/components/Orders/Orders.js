@@ -6,14 +6,24 @@ import "./Orders.scss";
 import { useState } from "react";
 
 const Orders = () => {
-  const [val,setVal] = useState('');
+  const [val, setVal] = useState("");
+  const [status, setStatus] = useState("");
+
+  const statusOrder = (val) => {
+    setStatus(val);
+  };
   const searchOrder = (val) => {
     setVal(val);
-  }
+  };
   return (
     <div className="OrdersContainer">
-      <OrderTop status={true} searchOrder={searchOrder} />
-      <OrderTable val={val} />
+      <OrderTop
+        status={true}
+        statusOrder={statusOrder}
+        searchOrder={searchOrder}
+        search={true}
+      />
+      <OrderTable val={val} status={status}  />
     </div>
   );
 };

@@ -11,8 +11,9 @@ import CustomButton from "../../sharedComponents/Buttons/CustomButton";
 import { useNavigate } from "react-router-dom";
 import { AdminScreens } from "../../utils/Routing/RoutePath";
 
-const OrderTop = ({ status, searchOrder }) => {
+const OrderTop = ({ statusOrder, searchOrder, status, search }) => {
   const [OrderId, setOrderId] = useState("");
+  const [statusVal, setStatusVal] = useState("");
   const { Option } = Select;
 
   const navigate = useNavigate();
@@ -20,6 +21,10 @@ const OrderTop = ({ status, searchOrder }) => {
   useEffect(() => {
     searchOrder(OrderId);
   }, [OrderId]);
+
+  useEffect(() => {
+    statusOrder(statusVal);
+  }, [statusVal]);
 
   return (
     <div className="OrdersTop">
@@ -34,18 +39,24 @@ const OrderTop = ({ status, searchOrder }) => {
         />
       </div>
       <div className="SearchBar">
-        <Input
-          allowClear
-          size="small"
-          placeholder={status ? "Search By Order ID" : "Search Goods"}
-          prefix={<SearchOutlined />}
-          onChange={(e) => setOrderId(e.target.value)}
-        />
+        {search && (
+          <Input
+            allowClear
+            size="small"
+            placeholder={status ? "Search By Order ID" : "Search Goods"}
+            prefix={<SearchOutlined />}
+            onChange={(e) => setOrderId(e.target.value)}
+          />
+        )}
       </div>
       {status && (
         <div className="OrderStatus">
           <div className="StatusDropdown">
-            <Select style={{ width: 200 }} placeholder="Search to Select">
+            <Select
+              style={{ width: 200 }}
+              onChange={(val) => setStatusVal(val)}
+              placeholder="Search to Select"
+            >
               {ORDER_STATUS.length > 0 &&
                 ORDER_STATUS?.map((item) => {
                   return (

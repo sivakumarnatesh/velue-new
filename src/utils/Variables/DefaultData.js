@@ -12,5 +12,5 @@ export const STATUS_CODE = {
 }
 
 export const ORDER_STATUS = [
-    'Received', 'Accepted','Approved','In-transit','Delivered','Rejected'
+   'New','Drafted','Received', 'Accepted','Approved','In-transit','Delivered','Rejected'
 ]

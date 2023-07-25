@@ -22,6 +22,7 @@ import {
   GET_CATEGORY,
   GET_PACKAGING,
   GET_UNITS,
+  GET_WEIGHT_UNITS,
 } from "../../utils/API/EndPoint";
 import { useNavigate } from "react-router-dom";
 import { STATUS_CODE } from "../../utils/Variables/DefaultData";
@@ -41,6 +42,7 @@ function AddProduct() {
   const [categoryType, setCategoryType] = useState([]);
   const [groupCode, setGroupCode] = useState("");
   const [unit, setUnit] = useState([]);
+  const [weightUnits, setWeightUnits] = useState([]);
   const [unitVal, setUnitVal] = useState("");
   const [brand, setBrand] = useState([]);
   const [brandName, setBrandName] = useState("");
@@ -57,8 +59,8 @@ function AddProduct() {
   const [maxOrder, setMaxOrder] = useState("");
   const [minStock, setMinStock] = useState("");
   const [stockInHand, setStockInHand] = useState("");
-  const [imageType,setImageType] = useState("");
-  const [imageUrl,setImageUrl] = useState("");
+  const [imageType, setImageType] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const isEditing = (record) => record.key === editingKey;
 
@@ -73,9 +75,7 @@ function AddProduct() {
   ]);
 
   const [count, setCount] = useState(dataSource.length);
-  const [fileList, setFileList] = useState([
-   
-  ]);
+  const [fileList, setFileList] = useState([]);
 
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
@@ -97,16 +97,16 @@ function AddProduct() {
   };
   const handleFileUpload = (file) => {
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.onload = (e) => {
       // Convert the uploaded file to blob format
-      const blob = new Blob([reader.result], { type: file.type });
+      // const blob = new Blob([reader.result], { type: file.type });
       // Use the blob as needed (e.g., send it to the server)
-      // console.log('blob',blob);
+      // console.log("blob", e.target.result);
       setImageType(Blob?.type);
-      const imageUrl = URL.createObjectURL(blob);
-      console.log(imageUrl);
+      const imageUrl = URL.createObjectURL(file);
+      console.log('jdhjjs',imageUrl);
       setImageUrl(imageUrl);
-      URL.revokeObjectURL(imageUrl);
+      // URL.revokeObjectURL(imageUrl);
     };
     reader.readAsArrayBuffer(file);
   };
@@ -118,6 +118,7 @@ function AddProduct() {
     fetchUnits();
     fetchPackage();
     fetchCategory();
+    fetchWeightUnits();
   }, []);
 
   const fetchBrands = async () => {
@@ -139,6 +140,17 @@ function AddProduct() {
       data?.status === STATUS_CODE?.SUCCESS_CODE_1
     ) {
       setUnit(data?.data);
+    } else {
+      message.error(data);
+    }
+  };
+  const fetchWeightUnits = async () => {
+    const data = await GetAPI(`${BASE_URL}${GET_WEIGHT_UNITS}`);
+    if (
+      data?.status === STATUS_CODE?.SUCCESS_CODE ||
+      data?.status === STATUS_CODE?.SUCCESS_CODE_1
+    ) {
+      setWeightUnits(data?.data);
     } else {
       message.error(data);
     }
@@ -167,49 +179,6 @@ function AddProduct() {
       message.error(data);
     }
   };
-
-  // const onFinish = (values) => {
-  //   console.log("Success:", values);
-  // };
-
-  // const onFinishFailed = (errorInfo) => {
-  //   console.log("Failed:", errorInfo);
-  // };
-  // const onGenderChange = (value) => {
-  //   switch (value) {
-  //     case "male":
-  //       form.setFieldsValue({ note: "Hi, man!" });
-  //       break;
-  //     case "female":
-  //       form.setFieldsValue({ note: "Hi, lady!" });
-  //       break;
-  //     case "other":
-  //       form.setFieldsValue({ note: "Hi there!" });
-  //       break;
-  //     default:
-  //   }
-  // };
-  // const { Dragger } = Upload;
-
-  // const props = {
-  //   name: "file",
-  //   multiple: false,
-  //   // action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-  //   onChange(info) {
-  //     const { status } = info.file;
-  //     if (status !== "uploading") {
-  //       console.log(info.file, info.fileList);
-  //     }
-  //     if (status === "done") {
-  //       message.success(`${info.file.name} file uploaded successfully.`);
-  //     } else if (status === "error") {
-  //       message.error(`${info.file.name} file upload failed.`);
-  //     }
-  //   },
-  //   onDrop(e) {
-  //     console.log("Dropped files", e.dataTransfer.files);
-  //   },
-  // };
 
   const cancel = () => {
     setEditingKey("");
@@ -346,39 +315,8 @@ function AddProduct() {
     const newData = dataSource.filter((item) => item.key !== key);
     setDataSource(newData);
   };
-  // const EditableCell = ({
-  //   editing,
-  //   dataIndex,
-  //   title,
-  //   inputType,
-  //   record,
-  //   index,
-  //   children,
-  //   ...restProps
-  // }) => {
-  //   const inputNode = inputType === "number" ? <InputNumber /> : <Input />;
 
-  //   return (
-  //     <td {...restProps}>
-  //       {editing ? (
-  //         <Form.Item
-  //           name={dataIndex}
-  //           style={{ margin: 0 }}
-  //           rules={[
-  //             {
-  //               required: true,
-  //               message: `Please Input ${title}!`,
-  //             },
-  //           ]}
-  //         >
-  //           {inputNode}
-  //         </Form.Item>
-  //       ) : (
-  //         children
-  //       )}
-  //     </td>
-  //   );
-  // };
+
   const newProduct = () => {
     setLoading(true);
     if (true) {
@@ -400,8 +338,6 @@ function AddProduct() {
         image: imageUrl,
         stockInHand: stockInHand,
         reStockLevel: minStock,
-        // createdAt: "2023-06-11T23:03:05",
-        // updatedAt: null,
         imageType: imageType,
         unitsPerPackaging: unitsNo,
         pricePerPackage: packagingPrice,
@@ -590,28 +526,30 @@ function AddProduct() {
                       onChange={(val) => setWeightUnit(val)}
                       allowClear
                     >
-                      <Option value="Gram">Gram</Option>
-                      <Option value="Kg">Kg</Option>
+                      {weightUnits.length > 0 &&
+                        weightUnits.map((item) => {
+                          return (
+                            <Option
+                              key={item?.weightId}
+                              value={item?.weightName}
+                            >
+                              {item?.weightName}
+                            </Option>
+                          );
+                        })}
                     </Select>
                   </div>
                 </Form.Item>
               </div>
             </div>
             <div className="uploadAddProduct">
-              {/* <Dragger {...props}>
-                <p className="ant-upload-drag-icon">
-                  <InboxOutlined />
-                </p>
-                <p className="ant-upload-text">
-                  Click or Drag Product Photo here.
-                </p>
-              </Dragger> */}
               <Upload
                 listType="picture-card"
                 accept="image/*"
                 beforeUpload={handleFileUpload}
                 onPreview={onPreview}
                 onChange={onChange}
+              
               >
                 {fileList.length < 1 && "+ Upload"}
               </Upload>
@@ -783,7 +721,7 @@ function AddProduct() {
           <div className="salesDetails">
             <Form.Item
               label="Min. Stock"
-              name="stock"
+              name="min"
               rules={[
                 {
                   required: true,

@@ -44,13 +44,13 @@ function CustomerTable({ fetchAgain }) {
     //   };
     //   result = [...result, val];
     // }
-    if (true) {
-      const val = {
-        text: "Disable",
-        // onClick: () => disableMember(row),
-      };
-      result = [...result, val];
-    }
+    // if (true) {
+    //   const val = {
+    //     text: "Disable",
+    //     // onClick: () => disableMember(row),
+    //   };
+    //   result = [...result, val];
+    // }
 
     return result;
   };

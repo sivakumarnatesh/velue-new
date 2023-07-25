@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 
 function Customers() {
 const location = useLocation();
-console.log('loc',location?.state)
   return (
     <div className="CustomerContainer">
       <CustomerTop />

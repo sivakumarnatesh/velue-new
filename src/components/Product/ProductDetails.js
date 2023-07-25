@@ -110,6 +110,7 @@ const ProductDetails = () => {
     setMaxOrder(location?.state?.productDetail?.maxOrderQuantity);
 
     setMinStock(location?.state?.productDetail?.reStockLevel);
+    console.log(location?.state?.productDetail);  
     setStockInHand(location?.state?.productDetail?.stockInHand);
   }, []);
 
@@ -457,17 +458,14 @@ const ProductDetails = () => {
     const reader = new FileReader();
     reader.onload = () => {
       // Convert the uploaded file to blob format
-      const blob = new Blob([reader.result], { type: file.type });
-
-      console.log("blob", blob.type);
+      // const blob = new Blob([reader.result], { type: file.type });
       setImageType(Blob?.type);
-      const blobimg = new Blob([file], { type: "image/png" });
+      // const blobimg = new Blob([file], { type: "image/png" });
+      const imageUrl = URL.createObjectURL(file);
+      console.log("blob", imageUrl);
 
-     
-      const imageUrl = URL.createObjectURL(blobimg);
-      console.log(imageUrl);
       setImageUrl(imageUrl);
-      URL.revokeObjectURL(imageUrl);
+      // URL.revokeObjectURL(imageUrl);
     };
     reader.readAsArrayBuffer(file);
   };
@@ -606,6 +604,7 @@ const ProductDetails = () => {
               />
             </div>
           </div>
+          {console.log("location", location.state.productDetail.image)}
           <div className="ProductImage">
             {/* <ImgCrop rotationSlider>
               <Upload
@@ -618,7 +617,7 @@ const ProductDetails = () => {
                 <div>{fileList.length < 1 && uploadButton}</div>
               </Upload>
             </ImgCrop> */}
-            <Upload
+            {/* <Upload
               listType="picture-card"
               accept="image/*"
               fileList={fileList}
@@ -627,11 +626,16 @@ const ProductDetails = () => {
               onChange={onChange}
             >
               {fileList.length < 1 && "+ Upload"}
-            </Upload>
+            </Upload> */}
+            <img
+              src={location?.state?.productDetail?.image}
+              alt="image_url"
+              style={{ width: "200px", height: "200px" }}
+            />
             {/* <div>fsgfsgfsgdfg</div>
             {console.log('imageURL',imageUrl)}
             <img src={imageUrl} /> */}
-            <img src="blob:http://localhost:3000/cfe9928f-fd71-44fc-8c30-e94844108105" />
+
             <CustomButton
               text="View More Details"
               onClick={viewMore}
@@ -748,7 +752,11 @@ const ProductDetails = () => {
         className="ViewProduct"
       >
         <Title title="Product Details" className="ProductImageDetails" />
-        <img src={Images.bg} className="ProductImageView" alt="Product" />
+        <img
+          src={location?.state?.productDetail?.image}
+          className="ProductImageView"
+          alt="Product"
+        />
         <Title title="About the Item" className="ProductImageDetails" />
         <ul>
           <li>

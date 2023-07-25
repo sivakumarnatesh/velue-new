@@ -87,7 +87,8 @@ function AddCustomer() {
   };
 
   const onCancel = () => {
-    console.log('cancel')
+    console.log('cancel');
+    navigate(AdminScreens?.customers);
   }
 
   const normFile = (e) => {
@@ -166,10 +167,10 @@ function AddCustomer() {
             >
               <Title title="Mittal Hardwares" className="Hardware" />
               <Title title="Ahammed Nazar" className="Name" />
-              <div className="Address">
+              {/* <div className="Address">
                 Site No. 05 , Opposite to JVM Garden Apartment Building,
                 Bangalore 560081
-              </div>
+              </div> */}
             </Form.Item>
           </div>
           <div className="Account1">

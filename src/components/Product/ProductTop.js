@@ -72,7 +72,7 @@ const ProductTop = ({searchProduct}) => {
         />
       </div>
 
-      <div className="StatusDropdown">
+      {/* <div className="StatusDropdown">
         <Select style={{ width: 200 }} placeholder="Status">
           {PRODUCT_STATUS.length > 0 &&
             PRODUCT_STATUS?.map((item) => {
@@ -83,7 +83,7 @@ const ProductTop = ({searchProduct}) => {
               );
             })}
         </Select>
-      </div>
+      </div> */}
       <div className="ItemDropdown">
         <Select placeholder="Upload Item" onChange={handleUpload}>
           {ITEMS.length > 0 &&

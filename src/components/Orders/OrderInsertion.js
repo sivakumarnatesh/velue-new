@@ -110,23 +110,35 @@ function OrderInsertion() {
       message.error(data);
     }
   };
-
+// console.log('checkProduc',checkProduct)
   const fetchById = async () => {
     const data = await GetAPI(
-      `${BASE_URL}${SEARCH_PRODUCT}${val}?productSearchType=PRODUCT_ID`
+      `${BASE_URL}${SEARCH_PRODUCT}${val}?productSearchType=PRODUCT_NAME`
     );
     if (
       data?.status === STATUS_CODE?.SUCCESS_CODE ||
       data?.status === STATUS_CODE?.SUCCESS_CODE_1
     ) {
-      setProductData([data?.data]);
+      setProductData([{ data: data?.data, checked: false }]);
+
+      // for (let i = 0; i < data?.data.length; i++) {
+      //   setCheckProduct((prev) => [
+      //     ...prev,
+      //     { data: data?.data[i], checked: false },
+      //   ]);
+      // }
     } else {
-      message.error(data);
+      console.log(data);
     }
   };
+  console.log("product data", productData);
+  // console.log('check product',checkProduct);
+  console.log("selected", selectedItem);
   useEffect(() => {
     if (val !== "") {
       fetchById();
+    } else {
+      fetchProduct();
     }
   }, [val]);
 
@@ -296,13 +308,15 @@ function OrderInsertion() {
   let customerName = [];
 
   useEffect(() => {
-    customerData.map((item, index) => {
-      customerName.push({
-        value: `${item?.customerId}`,
-        label: `${item?.customerName}`,
+    if (customerData.length > 0) {
+      customerData?.map((item, index) => {
+        customerName.push({
+          value: `${item?.customerId}`,
+          label: `${item?.customerName}`,
+        });
       });
-    });
-    setCName(customerName);
+      setCName(customerName);
+    }
   }, [customerData]);
 
   const fetchCustomer = async () => {
@@ -311,6 +325,7 @@ function OrderInsertion() {
       data?.status === STATUS_CODE?.SUCCESS_CODE ||
       data?.status === STATUS_CODE?.SUCCESS_CODE_1
     ) {
+      console.log("data", data);
       setCustomerData(data?.data);
     } else {
       message.error(data);
@@ -319,6 +334,7 @@ function OrderInsertion() {
 
   const onCancel = () => {
     setModalVisible(false);
+    navigate(AdminScreens?.orders);
   };
   const changeCustomer = (value, option) => {
     for (let i = 0; i < customerData.length; i++) {
@@ -330,6 +346,8 @@ function OrderInsertion() {
     }
   };
   const productSelected = (e, item) => {
+    // console.log('e',e);
+    // console.log('item',item)
     if (e === "") {
       const newState = checkProduct.map((obj) => {
         if (obj?.data?.productId === item?.productId) {
@@ -376,7 +394,7 @@ function OrderInsertion() {
           productId: `${selectedItem[i]?.productId}`,
           noOfQuantity: `${res[i]?.val ?? 0}`,
           sNo: i + 1,
-          goodsDescription: `${selectedItem[i]?.productName}`,
+          goodsDescription: `${selectedItem[i]?.itemDescription}`,
           quantity: `${res[i]?.val ?? 0} ${selectedItem[i]?.packing_type}`,
           rate: `${selectedItem[i]?.pricePerPackage}`,
           per: `${selectedItem[i]?.unitName}`,
@@ -425,7 +443,7 @@ function OrderInsertion() {
           <CustomButton
             text="Cancel"
             className="Reject"
-            // onClick={() => onCancel()}
+            onClick={() => onCancel()}
           />
           {/* <CustomButton
             text="Confirm"
@@ -438,12 +456,12 @@ function OrderInsertion() {
             className="confirm"
             defaultValue={orderStatus}
             onChange={(val) =>
-              dataSource?.length > 0 && totalAmount  !== 0
+              dataSource?.length > 0 && totalAmount !== 0
                 ? setOrderStatus(val)
                 : message.error("Please select products or quantity")
             }
             placeholder="Confirm"
-            disabled={totalAmount === 0 && dataSource.length === 0npy}
+            disabled={totalAmount === 0 && dataSource.length === 0}
           >
             <Option className="Options" value="Place Order">
               Place Order
@@ -564,6 +582,7 @@ function OrderInsertion() {
                 </div>
                 <div style={{ height: 500, overflowY: "scroll" }}>
                   {checkProduct.length > 0 &&
+                    val === "" &&
                     checkProduct.map((item, index) => {
                       return (
                         <div className="Goods">
@@ -633,6 +652,83 @@ function OrderInsertion() {
                                     marginRight: "20px",
                                   }}
                                   checked={item?.checked}
+                                  onChange={(e) => productSelected(e, item)}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  {productData.length > 0 &&
+                    val !== "" &&
+                    productData.map((item, index) => {
+                      return (
+                        <div className="Goods">
+                          <div>
+                            <img
+                              src={item?.image}
+                              alt="Product_image"
+                              style={{
+                                width: 100,
+                                height: 100,
+                                borderRadius: "12px",
+                              }}
+                            />
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "space-between",
+                              width: "80%",
+                            }}
+                          >
+                            <div>
+                              <div className="ProductName">
+                                {item?.productName}
+                              </div>
+                              <div>
+                                <div className="GoodsDetails">
+                                  <Title
+                                    title="Good ID:"
+                                    className="CodeTitle"
+                                  />
+                                  <Title
+                                    title={item?.productCode}
+                                    className="Code"
+                                  />
+                                </div>
+                                <div className="GoodsDetails">
+                                  <Title title="Rate" className="CodeTitle" />
+                                  <Title
+                                    title={item?.pricePerPackage}
+                                    className="Code"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div className="ProductRight">
+                              <div>
+                                <div>Stock in hand</div>
+                                <div className="pieces">
+                                  {item?.stockInHand + " " + item?.packing_type}
+                                </div>
+                                <div>
+                                  {item?.unitsPerPackaging +
+                                    " " +
+                                    "units per" +
+                                    " " +
+                                    item?.packing_type}
+                                </div>
+                              </div>
+                              <div>
+                                <Checkbox
+                                  style={{
+                                    marginLeft: "40px",
+                                    marginRight: "20px",
+                                  }}
+                                  // checked={false}
                                   onChange={(e) => productSelected(e, item)}
                                 />
                               </div>

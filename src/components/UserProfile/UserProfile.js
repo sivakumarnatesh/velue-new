@@ -128,6 +128,7 @@ const UserProfile = () => {
   const onCancel = () => {
     setOpenModal(false);
     setEditModal(false);
+
   };
 
   const disableMember = (row) => {

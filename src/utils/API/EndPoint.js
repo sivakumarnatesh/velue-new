@@ -31,6 +31,8 @@ export const DELETE_ORDER = "order/delete/";
 
 export const SEARCH_ORDER = "order/"
 
+export const FILTER_ORDER = "order/search/status"
+
 //PRODUCT ENDPOINT
 export const LIST_PRODUCT = "product/getAllProducts";
 
@@ -52,9 +54,13 @@ export const GET_PACKAGING = "product/getAllPackaging";
 
 export const GET_CATEGORY = "product/getAllCategory";
 
+export const GET_WEIGHT_UNITS = "product/getAllWeights";
+
 //CUSTOMER ENDPOINT
 export const LIST_CUSTOMER = "customer/getAllCustomers";
 
 export const CUSTOMER_BY_ID = "customer"
 
 export const ADD_CUSTOMER = "customer/saveCustomers";
+
+export const EDIT_CUSTOMER = "customer/update";

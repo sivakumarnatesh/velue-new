@@ -52,7 +52,7 @@ function ProductTable({ val }) {
 
   const fetchById = async () => {
     const data = await GetAPI(
-      `${BASE_URL}${SEARCH_PRODUCT}${val}?productSearchType=PRODUCT_ID`
+      `${BASE_URL}${SEARCH_PRODUCT}${val}?productSearchType=PRODUCT_NAME`
     );
     console.log("data", data?.data);
     if (
@@ -61,7 +61,7 @@ function ProductTable({ val }) {
     ) {
       setDataSource([data?.data]);
     } else {
-      message.error(data);
+      console.log(data);
     }
   };
   const fetchPackage = async () => {
@@ -143,7 +143,7 @@ function ProductTable({ val }) {
               <div>
                 <div className="GoodsDetails">
                   <Title title="Item Code:" className="CodeTitle" />
-                  <Title title="ID45897834" className="Code" />
+                  <Title title={record?.itemCode} className="Code" />
                 </div>
               </div>
             </div>

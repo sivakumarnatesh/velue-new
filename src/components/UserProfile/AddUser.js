@@ -23,7 +23,7 @@ import Loader from "../../sharedComponents/CustomLoader/Loader";
 import { AdminScreens } from "../../utils/Routing/RoutePath";
 import { Navigate, useNavigate } from "react-router-dom";
 
-function AddUser({ onCancel }) {
+function AddUser() {
   //User Basic Details
   const [FirstName, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
@@ -157,6 +157,10 @@ function AddUser({ onCancel }) {
       console.log("Dropped files", e.dataTransfer.files);
     },
   };
+  const onCancel = () => {
+    navigate(AdminScreens?.users);
+    console.log('came here')
+  }
   return (
     <div className="AddProduct">
       <UserTop validateCredentials={validateCredentials} onCancel={onCancel} />

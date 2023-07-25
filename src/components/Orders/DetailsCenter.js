@@ -2,7 +2,7 @@ import React from "react";
 import Title from "../../sharedComponents/Title/Title";
 
 const DetailsCenter = ({EditCustomer,customerDetails,orderdetail}) => {
-  console.log('orderdetail',orderdetail)
+  console.log('orderdetail',customerDetails)
   return (
     <div className="DetailsCenter">
       <div className="DetailsLHS">
@@ -10,10 +10,10 @@ const DetailsCenter = ({EditCustomer,customerDetails,orderdetail}) => {
           <Title title="Customer" className="Customer" />
           <Title title={orderdetail?.customer?.customerName} className="CustomerName" />
           <Title title={orderdetail?.customer?.gstno} className="GST" />
-          <div className="CustomerAddress">
+          {/* <div className="CustomerAddress">
             Site No. 05 , Opposite to JVM Garden Apartment Building, Bangalore
             560081
-          </div>
+          </div> */}
         </div>
         <div className="ContactInfo">
           <Title title="Contact" className="Contact" />
@@ -39,7 +39,7 @@ const DetailsCenter = ({EditCustomer,customerDetails,orderdetail}) => {
           </div>
           <div className="Amount">
             <Title title="Outstanding Amount" className="Contact" />
-            <Title title="25,000" className="CustomerName" />
+            <Title title={orderdetail?.customer?.outstandingLimit} className="CustomerName" />
           </div>
         </div>
       </div>

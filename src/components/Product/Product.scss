@@ -360,7 +360,7 @@
       .ProductImage{
         :where(.css-dev-only-do-not-override-1vtf12y).ant-upload-wrapper.ant-upload-picture-card-wrapper .ant-upload.ant-upload-select, :where(.css-dev-only-do-not-override-1vtf12y).ant-upload-wrapper.ant-upload-picture-circle-wrapper .ant-upload.ant-upload-select{
           background-color: #ffffff !important;
-          width: 100% !important;
+          // width: 100% !important;
           height: 20vh !important;
           margin-bottom: 20px !important;
         }

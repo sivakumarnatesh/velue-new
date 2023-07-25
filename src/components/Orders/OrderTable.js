@@ -6,6 +6,7 @@ import { STATUS_CODE } from "../../utils/Variables/DefaultData";
 import {
   BASE_URL,
   DELETE_ORDER,
+  FILTER_ORDER,
   LIST_ORDER,
   SEARCH_ORDER,
 } from "../../utils/API/EndPoint";
@@ -14,7 +15,7 @@ import { message } from "antd";
 import PopOver from "../../sharedComponents/PopOver/PopOver";
 import { MoreOutlined } from "@ant-design/icons";
 
-const OrderTable = ({ val }) => {
+const OrderTable = ({ val, status }) => {
   const navigate = useNavigate();
   const [dataSource, setDataSource] = useState([]);
 
@@ -53,6 +54,27 @@ const OrderTable = ({ val }) => {
       data?.status === STATUS_CODE?.SUCCESS_CODE_1
     ) {
       setDataSource([data?.data]);
+    } else {
+      message.error(data);
+    }
+  };
+  useEffect(() => {
+    if (status !== "") {
+      fetchByStatus();
+    } else {
+      fetch();
+    }
+  }, [status]);
+  console.log('status',status)
+
+  const fetchByStatus = async () => {
+    const data = await GetAPI(`${BASE_URL}${FILTER_ORDER}/${status}`);
+    console.log("data", data?.data);
+    if (
+      data?.status === STATUS_CODE?.SUCCESS_CODE ||
+      data?.status === STATUS_CODE?.SUCCESS_CODE_1
+    ) {
+      setDataSource(data?.data);
     } else {
       message.error(data);
     }
@@ -106,6 +128,13 @@ const OrderTable = ({ val }) => {
   };
 
   const columns = [
+    {
+      title: "Order Id",
+      dataIndex: "orderId",
+      // render: (row) => {
+      //   return <div>{row?.customerName}</div>;
+      // },
+    },
     {
       title: "Customer Name",
       dataIndex: "customer",
