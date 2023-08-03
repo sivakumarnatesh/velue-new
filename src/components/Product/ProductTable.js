@@ -133,7 +133,9 @@ function ProductTable({ val }) {
           <div className="Goods">
             <div>
               <img
-                src={record.image}
+                // src={record.image}
+                src={(record?.image !== "" && record?.image !== null )?record?.image:Images.ProductIcon}
+
                 style={{ width: "64px", height: "64px", borderRadius: "8px" }}
                 alt="Product_image"
               />
