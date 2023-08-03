@@ -9,9 +9,12 @@ import Title from "../../sharedComponents/Title/Title";
 import { useLocation } from "react-router-dom";
 
 const OrderDetails = () => {
+
   const [val,setVal] = useState('');
   const location = useLocation();
   const [status, setStatus] = useState("");
+
+  console.log(location?.state?.orderDetails?.product);
 
   const statusOrder = (val) => {
     setStatus(val);
@@ -74,14 +77,6 @@ const OrderDetails = () => {
         );
       },
     },
-    // {
-    //   title: "HSN/SAC",
-    //   dataIndex: "hsnsac",
-    // },
-    // {
-    //   title: "Due on",
-    //   dataIndex: "dueon",
-    // },
     {
       title: "Quantity",
       dataIndex: "orderQuantity",
@@ -94,10 +89,6 @@ const OrderDetails = () => {
       title: "Per",
       dataIndex: "per",
     },
-    // {
-    //   title: "Disc%",
-    //   dataIndex: "discount",
-    // },
     {
       title: "Amount",
       dataIndex: "amount",

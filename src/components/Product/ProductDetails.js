@@ -458,6 +458,7 @@ const ProductDetails = () => {
     reader.onload = () => {
       // Convert the uploaded file to blob format
       // const blob = new Blob([reader.result], { type: file.type });
+      setImageType(Blob?.type);
       // const blobimg = new Blob([file], { type: "image/png" });
       const imageUrl = URL.createObjectURL(file);
       console.log("blob", imageUrl);
@@ -491,6 +492,7 @@ const ProductDetails = () => {
       reStockLevel: minStock,
       // createdAt: "2023-06-11T23:03:05",
       // updatedAt: null,
+      imageType: imageType,
       unitsPerPackaging: unitsNo,
       pricePerPackage: packagingPrice,
       minOrderQuantity: minOrder,
@@ -657,7 +659,7 @@ const ProductDetails = () => {
           />
         </div>
 
-        <div className="IDetails" style={{width:"70%"}}>
+        <div className="IDetails">
           <div className="Details">
             <Title title="Sales price per unit" className="IName" />
             <Title

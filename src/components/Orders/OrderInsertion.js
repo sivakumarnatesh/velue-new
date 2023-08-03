@@ -59,7 +59,7 @@ function OrderInsertion() {
 
   useEffect(() => {
     fetchCustomer();
-  //   // fetchProduct();
+    // fetchProduct();
   }, []);
 
   useEffect(() => {

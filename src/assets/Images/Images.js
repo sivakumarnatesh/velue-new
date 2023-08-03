@@ -11,7 +11,6 @@ import PendingOrders from "./PendingOrders.svg";
 import Customers from "./CustomerLogo.svg";
 import TotalOrders from "./TotalOrders.svg";
 import Tap from "./Tap.svg";
-import ProductIcon from "./product-icon.png";
 
 export const Images = {
   Logo,
@@ -27,5 +26,4 @@ export const Images = {
   Customers,
   TotalOrders,
   Tap,
-  ProductIcon
 };

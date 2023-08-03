@@ -53,7 +53,11 @@ const OrderTop = ({ statusOrder, searchOrder, status, search }) => {
         <div className="OrderStatus">
           <div className="StatusDropdown">
             <Select
-              style={{ width: 200 }}
+              style={{
+                width: 200,
+                border: "none",
+                outline: "none",
+              }}
               onChange={(val) => setStatusVal(val)}
               placeholder="Search to Select"
             >

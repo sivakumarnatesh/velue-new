@@ -59,47 +59,54 @@
   gap: 20px;
 }
 .StatusContainer {
-  .Accept {
+  .Accepted {
     color: #ffffff;
     border-radius: 25px;
     background-color: #ff7a00;
     text-align: center;
-    padding: 10px 20px;
+    padding: 5px 5px;
   }
   .Receive {
     color: #ffffff;
     border-radius: 25px;
     background-color: #273961;
     text-align: center;
-    padding: 10px 20px;
+    padding: 5px 5px;
   }
-  .Approve {
+  .New {
+    color: #ffffff;
+    border-radius: 25px;
+    background-color: #273961;
+    text-align: center;
+    padding: 5px 5px;
+  }
+  .Approved {
     color: #ffffff;
     border-radius: 25px;
     background-color: #c9c110;
     text-align: center;
-    padding: 10px 20px;
+    padding: 5px 5px;
   }
   .Transit {
     color: #ffffff;
     border-radius: 25px;
     background-color: #0975c4;
     text-align: center;
-    padding: 10px 20px;
+    padding: 5px 5px;
   }
-  .Deliver {
+  .Delivered {
     color: #ffffff;
     border-radius: 25px;
     background-color: #1f9254;
     text-align: center;
-    padding: 10px 20px;
+    padding: 5px 5px;
   }
-  .Reject {
-    color: #a30d11;
+  .Rejected {
+    color: #A30D11;
     border-radius: 25px;
-    background-color: #fbe7e8;
+    background-color: #FBE7E8;
     text-align: center;
-    padding: 10px 20px;
+    padding: 5px 5px;
   }
 }
 .OrderDetails {

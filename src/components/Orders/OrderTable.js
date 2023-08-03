@@ -3,6 +3,7 @@ import AntdTable from "../../sharedComponents/AntdTable/AntdTable";
 import { useNavigate } from "react-router-dom";
 import { AdminScreens } from "../../utils/Routing/RoutePath";
 import { STATUS_CODE } from "../../utils/Variables/DefaultData";
+import deleteIcon from "../../assets/svgs/delete.svg";
 import {
   BASE_URL,
   DELETE_ORDER,
@@ -65,7 +66,7 @@ const OrderTable = ({ val, status }) => {
       fetch();
     }
   }, [status]);
-  console.log('status',status)
+  console.log("status", status);
 
   const fetchByStatus = async () => {
     const data = await GetAPI(`${BASE_URL}${FILTER_ORDER}/${status}`);
@@ -81,6 +82,7 @@ const OrderTable = ({ val, status }) => {
   };
 
   const viewRole = async (row) => {
+    console.log("row", row);
     navigate(AdminScreens.orderdetails, {
       state: { orderDetails: row },
     });
@@ -166,19 +168,24 @@ const OrderTable = ({ val, status }) => {
     {
       title: "Status",
       dataIndex: "orderStatus",
-      // render: () => {
-      //   return (
-      //     <div className="StatusContainer" onClick={() => navigate(AdminScreens.orderdetails)}>
-      //       {/* <div className="Accept">Accepted</div>
-      //       <div className="Receive">Received</div>
-      //       <div className="Approve">Approved</div>
-      //       <div className="Transit">In-transit</div> */}
-      //       <div className="Deliver">Delivered</div>
-
-      //       {/* <div className="Reject">Rejected</div> */}
-      //     </div>
-      //   );
-      // },
+      render: (_, { orderStatus }) => {
+        return (
+          <div
+            className="StatusContainer"
+            onClick={() => navigate(AdminScreens.orderdetails)}
+          >
+            <div
+              className={orderStatus}
+              style={{
+                height: 34,
+                width: 96,
+              }}
+            >
+              {orderStatus}
+            </div>
+          </div>
+        );
+      },
     },
     {
       title: "",
@@ -187,11 +194,17 @@ const OrderTable = ({ val, status }) => {
       render: (row) => {
         const contentData = assignContentData(row);
         return (
-          <PopOver
-            getPopupContainer={(triggerNode) => triggerNode}
-            content={contentData}
-            children={<MoreOutlined className="dotIcon" />}
-          />
+          <div height={40} width={40}>
+            <img
+              onClick={(event) => {
+                event.stopPropagation();
+                deleteRole(row);
+              }}
+              height={20}
+              width={20}
+              src={deleteIcon}
+            ></img>
+          </div>
         );
       },
     },
@@ -203,6 +216,13 @@ const OrderTable = ({ val, status }) => {
         columns={columns}
         scroll={{ x: true }}
         limit={6}
+        onRow={(record, rowIndex) => {
+          return {
+            onClick: (event) => {
+              viewRole(record);
+            },
+          };
+        }}
       />
     </div>
   );
