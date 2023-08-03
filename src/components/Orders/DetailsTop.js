@@ -8,6 +8,14 @@ import { AdminScreens } from "../../utils/Routing/RoutePath";
 const DetailsTop = ({ AddProduct, productDetails, EditCustomer, customerName, gstno,id,order,newProduct }) => {
   const navigate = useNavigate();
   console.log('id',id);
+
+  let onCancel = ()=>{
+    AddProduct
+    ? navigate(AdminScreens?.product)
+    : EditCustomer
+    ? navigate(AdminScreens?.customers)
+    : navigate(AdminScreens?.orders);
+  };
   return (
     <div className="DetailsTop">
       <div className="TopLeft">
@@ -25,13 +33,13 @@ const DetailsTop = ({ AddProduct, productDetails, EditCustomer, customerName, gs
         <div className="Titles">
           {AddProduct ? (
             <>
-              <Title title="ID45454545" className="OrderID" />
-              <Title title="Item code" className="Itemcode" />
+              <Title title="Add Product" className="OrderID" />
+              {/* <Title title="Item code" className="Itemcode" /> */}
             </>
           ) : productDetails ? (
             <>
               <Title title="Order ID" className="TOrderID" />
-              <Title title="OID45454545" className="OrderID" />
+              <Title title={order?.id} className="OrderID" />
             </>
           ) : order ? (
             <>
@@ -85,7 +93,7 @@ const DetailsTop = ({ AddProduct, productDetails, EditCustomer, customerName, gs
           <CustomButton
             text={AddProduct ? "Cancel" : "Reject"}
             className="Reject"
-            // onClick={() => onCancel()}
+            onClick={() => onCancel()}
           />
           <CustomButton
             text={AddProduct ? "Save" : "Approve"}

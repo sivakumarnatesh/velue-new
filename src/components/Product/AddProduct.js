@@ -59,7 +59,6 @@ function AddProduct() {
   const [maxOrder, setMaxOrder] = useState("");
   const [minStock, setMinStock] = useState("");
   const [stockInHand, setStockInHand] = useState("");
-  const [imageType, setImageType] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
   const isEditing = (record) => record.key === editingKey;
@@ -96,19 +95,13 @@ function AddProduct() {
     imgWindow?.document.write(image.outerHTML);
   };
   const handleFileUpload = (file) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      // Convert the uploaded file to blob format
-      // const blob = new Blob([reader.result], { type: file.type });
-      // Use the blob as needed (e.g., send it to the server)
-      // console.log("blob", e.target.result);
-      setImageType(Blob?.type);
-      const imageUrl = URL.createObjectURL(file);
-      console.log('jdhjjs',imageUrl);
-      setImageUrl(imageUrl);
-      // URL.revokeObjectURL(imageUrl);
-    };
-    reader.readAsArrayBuffer(file);
+
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      console.log('RESULT', reader.result)
+      setImageUrl(reader.result);
+    }
+    reader.readAsDataURL(file);
   };
 
   const navigate = useNavigate();
@@ -182,6 +175,7 @@ function AddProduct() {
 
   const cancel = () => {
     setEditingKey("");
+    navigate(AdminScreens?.product)
   };
 
   const save = async (key) => {
@@ -317,68 +311,71 @@ function AddProduct() {
   };
 
 
-  const newProduct = () => {
+  const newProduct = async () => {
     setLoading(true);
-    if (true) {
-      const payload = {
-        productName: productName,
-        modelName: modelName,
-        productCode: code,
-        categoryName: category,
-        groupCode: groupCode,
-        unitId: 1,
-        unitName: unitVal,
-        brandId: 1,
-        brandName: brandName,
-        itemDescription: about,
-        packing_type: packingType,
-        categoryId: 1,
-        weight: weight,
-        productDescription: description,
-        image: imageUrl,
-        stockInHand: stockInHand,
-        reStockLevel: minStock,
-        imageType: imageType,
-        unitsPerPackaging: unitsNo,
-        pricePerPackage: packagingPrice,
-        minOrderQuantity: minOrder,
-        maxOrderQuantity: minStock,
-        status: "Active",
-        itemCode: "101",
-      };
-      POSTAPI(`${BASE_URL}${CREATE_PRODUCT}`, payload)
-        .then((res) => {
-          console.log("res", res);
-          if (
-            res?.status === STATUS_CODE?.SUCCESS_CODE ||
-            res?.status === STATUS_CODE?.SUCCESS_CODE_1
-          ) {
+     form.validateFields().then((values)=>{
+      
+        const payload = {
+          productName: productName,
+          modelName: modelName,
+          productCode: code,
+          categoryName: category,
+          groupCode: groupCode,
+          unitId: 1,
+          unitName: unitVal,
+          brandId: 1,
+          brandName: brandName,
+          itemDescription: about,
+          packing_type: packingType,
+          categoryId: 1,
+          weight: weight,
+          productDescription: description,
+          image: imageUrl,
+          stockInHand: stockInHand,
+          reStockLevel: minStock,
+          unitsPerPackaging: unitsNo,
+          pricePerPackage: packagingPrice,
+          minOrderQuantity: minOrder,
+          maxOrderQuantity: minStock,
+          status: "Active",
+          itemCode: "101",
+        };
+        POSTAPI(`${BASE_URL}${CREATE_PRODUCT}`, payload)
+          .then((res) => {
+            console.log("res", res);
+            if (
+              res?.status === STATUS_CODE?.SUCCESS_CODE ||
+              res?.status === STATUS_CODE?.SUCCESS_CODE_1
+            ) {
+              setLoading(false);
+              message.success("Product Added Successfully.");
+              navigate(AdminScreens?.product, { state: { fetch: true } });
+              // fetch();
+            }
+          })
+          .catch((err) => {
+            console.log("err", err);
             setLoading(false);
-            message.success("Product Added Successfully.");
-            navigate(AdminScreens?.product, { state: { fetch: true } });
-            // fetch();
-          }
-        })
-        .catch((err) => {
-          console.log("err", err);
-          setLoading(false);
-          message.error(err.message);
-        });
-    } else {
+            message.error(err.message);
+          });
+      })
+    .catch((err)=>{
+      console.log(err)
       message.error("Enter all mandatory fields!");
       setLoading(false);
-    }
+    })
   };
 
   return (
     <div className="AddProduct">
-      <DetailsTop AddProduct={true} newProduct={newProduct} />
+      <DetailsTop AddProduct={true} newProduct={newProduct} on />
       <div className="Details">
         <Title title="Item Details" className="AccountDetails" />
         <Form
           name="basic"
           initialValues={{ remember: true }}
-          autoComplete="off"
+          autoComplete="on"
+          form={form}
         >
           <div className="FieldUpload">
             <div>
@@ -427,7 +424,12 @@ function AddProduct() {
                 <Form.Item
                   name="category"
                   label="Category"
-                  rules={[{ required: false }]}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please choose the category",
+                    },
+                  ]}
                 >
                   <Select
                     placeholder="Select Category"
@@ -464,7 +466,12 @@ function AddProduct() {
                 <Form.Item
                   name="unit"
                   label="Unit"
-                  rules={[{ required: false }]}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please choose the unit type",
+                    },
+                  ]}
                 >
                   <Select
                     placeholder="Select unit"
@@ -486,7 +493,12 @@ function AddProduct() {
                 <Form.Item
                   name="brand"
                   label="Brand"
-                  rules={[{ required: false }]}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please choose the type of Brand!",
+                    },
+                  ]}
                 >
                   <Select
                     placeholder="Select Brand"
@@ -507,12 +519,13 @@ function AddProduct() {
                 <Form.Item
                   label="Weight"
                   name="weight"
-                  rules={[
-                    {
-                      required: false,
-                      message: "Please input your weight!",
-                    },
-                  ]}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please enter the weight of the product!",
+                      },
+                    ]}
+                  
                 >
                   <div className="WeightField">
                     <Input
@@ -527,11 +540,12 @@ function AddProduct() {
                       allowClear
                     >
                       {weightUnits.length > 0 &&
-                        weightUnits.map((item) => {
+                        weightUnits.map((item, idx) => {
                           return (
                             <Option
                               key={item?.weightId}
                               value={item?.weightName}
+                              selected={idx === 0}
                             >
                               {item?.weightName}
                             </Option>
@@ -560,6 +574,7 @@ function AddProduct() {
           name="basic"
           labelCol={{ span: 8 }}
           initialValues={{ remember: true }}
+          form={form}
           // onFinish={onFinish}
           // onFinishFailed={onFinishFailed}
           autoComplete="off"
@@ -606,6 +621,7 @@ function AddProduct() {
           name="basic"
           labelCol={{ span: 24 }}
           initialValues={{ remember: true }}
+          form={form}
           // onFinish={onFinish}
           // onFinishFailed={onFinishFailed}
           autoComplete="off"
@@ -614,9 +630,9 @@ function AddProduct() {
             <Form.Item
               label="Packaging Type"
               name="type"
-              // rules={[
-              //   { required: true, message: "Please input your package type!" },
-              // ]}
+              rules={[
+                { required: true, message: "Please choose your package type!" },
+              ]}
             >
               <Select
                 placeholder="Select Packaging Type"
@@ -717,6 +733,7 @@ function AddProduct() {
           // onFinish={onFinish}
           // onFinishFailed={onFinishFailed}
           autoComplete="off"
+          form={form}
         >
           <div className="salesDetails">
             <Form.Item

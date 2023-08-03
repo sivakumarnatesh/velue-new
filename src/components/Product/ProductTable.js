@@ -52,17 +52,17 @@ function ProductTable({ val }) {
 
   const fetchById = async () => {
     const data = await GetAPI(
-      `${BASE_URL}${SEARCH_PRODUCT}${val}?productSearchType=PRODUCT_NAME`
+      `${BASE_URL}${SEARCH_PRODUCT}${val}?productSearchType=PRODUCT_ID`
     );
     console.log("data", data?.data);
     if (
-      data?.status === STATUS_CODE?.SUCCESS_CODE ||
-      data?.status === STATUS_CODE?.SUCCESS_CODE_1
+      (data?.status === STATUS_CODE?.SUCCESS_CODE ||
+      data?.status === STATUS_CODE?.SUCCESS_CODE_1 )
+      && data?.data !==""
     ) {
       setDataSource([data?.data]);
     } else {
-      console.log(data);
-    }
+      setDataSource([])   }
   };
   const fetchPackage = async () => {
     const data = await GetAPI(`${BASE_URL}${LIST_PRODUCT_UNITS}`);
@@ -72,7 +72,7 @@ function ProductTable({ val }) {
     ) {
       setproductPackage(data?.data);
     } else {
-      message.error(data);
+      setDataSource([])
     }
   };
   const disableMember = (row) => {
@@ -133,7 +133,7 @@ function ProductTable({ val }) {
           <div className="Goods">
             <div>
               <img
-                src={record?.image}
+                src={record.image}
                 style={{ width: "64px", height: "64px", borderRadius: "8px" }}
                 alt="Product_image"
               />
@@ -207,7 +207,7 @@ function ProductTable({ val }) {
       className="userTable"
       dataSource={dataSource}
       columns={columns}
-      scroll={{ x: true }}
+      scroll={{ x: true}}
       limit={6}
     />
   );

@@ -10,9 +10,9 @@ function AntdTable(props) {
         pageSize: limit,
         total,
         hideOnSinglePage: true,
-        showSizeChanger,
+        showSizeChanger:false,
         defaultPageSize: limit,
-        onShowSizeChange: false,
+        // onShowSizeChange: false,
         position: ['bottomCenter'],
       }}
       dataSource={data}

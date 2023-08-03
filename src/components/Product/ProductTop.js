@@ -17,7 +17,8 @@ const ProductTop = ({searchProduct}) => {
   const { Option } = Select;
   const navigate = useNavigate();
   const PRODUCT_STATUS = ["Active", "Disable"];
-  const ITEMS = ["Add Item", "Add Bulk Items"];
+  const ITEMS = ["Add Item"];
+  // const ITEMS = ["Add Item", "Add Bulk Items"];
 
   const handleUpload = (val) => {
     console.log("val", val);
@@ -66,7 +67,7 @@ const ProductTop = ({searchProduct}) => {
       <div className="SearchBar">
         <Input
           size="small"
-          placeholder="Search Product Name"
+          placeholder="Search by Item code"
           prefix={<SearchOutlined />}
           onChange={(e) => setProductId(e.target.value)}
         />

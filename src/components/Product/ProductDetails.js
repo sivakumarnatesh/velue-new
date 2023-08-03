@@ -48,7 +48,6 @@ const ProductDetails = () => {
   const [editInventory, setEditInventory] = useState(false);
   const [editPurchase, setEditPurchase] = useState(false);
   const [editingKey, setEditingKey] = useState("");
-  const [imageType, setImageType] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
   const location = useLocation();
@@ -459,7 +458,6 @@ const ProductDetails = () => {
     reader.onload = () => {
       // Convert the uploaded file to blob format
       // const blob = new Blob([reader.result], { type: file.type });
-      setImageType(Blob?.type);
       // const blobimg = new Blob([file], { type: "image/png" });
       const imageUrl = URL.createObjectURL(file);
       console.log("blob", imageUrl);
@@ -493,7 +491,6 @@ const ProductDetails = () => {
       reStockLevel: minStock,
       // createdAt: "2023-06-11T23:03:05",
       // updatedAt: null,
-      imageType: imageType,
       unitsPerPackaging: unitsNo,
       pricePerPackage: packagingPrice,
       minOrderQuantity: minOrder,
@@ -628,19 +625,25 @@ const ProductDetails = () => {
               {fileList.length < 1 && "+ Upload"}
             </Upload> */}
             <img
+                src={(location?.state?.productDetail?.image !== "" && location?.state?.productDetail?.image !== null )?location?.state?.productDetail?.image:Images.ProductIcon}
+                style={{ width: "100px", height: "100px", borderRadius: "8px" }}
+                // style={{ width: "200px", height: "200px" }}
+                alt="Product_image"
+              />
+            {/* <img
               src={location?.state?.productDetail?.image}
               alt="image_url"
               style={{ width: "200px", height: "200px" }}
-            />
+            /> */}
             {/* <div>fsgfsgfsgdfg</div>
             {console.log('imageURL',imageUrl)}
             <img src={imageUrl} /> */}
 
-            <CustomButton
+            {/* <CustomButton
               text="View More Details"
               onClick={viewMore}
               className="MoreDetails"
-            />
+            /> */}
           </div>
         </div>
       </div>
@@ -654,7 +657,7 @@ const ProductDetails = () => {
           />
         </div>
 
-        <div className="IDetails">
+        <div className="IDetails" style={{width:"70%"}}>
           <div className="Details">
             <Title title="Sales price per unit" className="IName" />
             <Title
